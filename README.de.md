@@ -24,6 +24,11 @@ Wichtiger Hinweis fuer Windows:
 - unter Windows wird das Handbuch derzeit im externen Browser geoeffnet
 - der eingebettete WebView-Pfad ist fuer den Windows-Build aktuell noch nicht
   stabil genug
+- Microsoft Defender SmartScreen kann beim Start dieser ersten oeffentlichen
+  Version eine Warnung anzeigen, weil das Windows-Paket noch nicht
+  code-signiert ist
+- wenn du dem aus diesem Repository heruntergeladenen Release vertraust, kannst
+  du ueber `Weitere Informationen` und `Trotzdem ausfuehren` fortfahren
 
 Die meisten LVGL-Editoren erzeugen Display-Code. Dieses Projekt entwickelt sich
 in die Richtung, den kompletten Vertrag zwischen MCU-Anwendung und Display zu

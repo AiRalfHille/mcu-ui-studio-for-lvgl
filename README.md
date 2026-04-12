@@ -23,6 +23,10 @@ Important Windows note:
 
 - on Windows the handbook currently opens in the external browser
 - the embedded WebView path is not stable enough yet for the Windows build
+- Microsoft Defender SmartScreen may warn when starting this first public
+  release because the Windows package is not code-signed yet
+- if you trust the release downloaded from this repository, continue through
+  `More info` and `Run anyway`
 
 Most LVGL editors generate display code. This one is evolving toward generating
 the complete contract between your MCU application and the display:
