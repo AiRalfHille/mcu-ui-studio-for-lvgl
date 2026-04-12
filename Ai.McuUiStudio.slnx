@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Ai.McuUiStudio.App/Ai.McuUiStudio.App.csproj" />
+    <Project Path="src/Ai.McuUiStudio.Core/Ai.McuUiStudio.Core.csproj" />
+    <Project Path="src/Ai.McuUiStudio.PreviewHost/Ai.McuUiStudio.PreviewHost.csproj" />
+  </Folder>
+</Solution>

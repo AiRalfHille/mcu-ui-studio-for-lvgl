@@ -1,0 +1,576 @@
+{
+  "formatVersion": 1,
+  "root": {
+    "type": "screen",
+    "attributes": {
+      "height": "800",
+      "name": "kachel_screen",
+      "useUpdate": "false",
+      "width": "1280"
+    },
+    "events": [],
+    "children": [
+      {
+        "type": "view",
+        "attributes": {
+          "gridColumnDscArray": "fr(1) fr(1) fr(1) fr(1)",
+          "gridRowDscArray": "fr(1) fr(1) fr(1)",
+          "height": "100%",
+          "layout": "grid",
+          "padding": "10",
+          "columnSpacing": "10",
+          "rowSpacing": "10",
+          "useUpdate": "false",
+          "width": "100%"
+        },
+        "events": [],
+        "children": [
+          {
+            "type": "view",
+            "attributes": {
+              "borderWidth": "1",
+              "gridCellColumnPos": "0",
+              "gridCellColumnSpan": "1",
+              "gridCellRowPos": "0",
+              "gridCellRowSpan": "1",
+              "gridCellXAlign": "stretch",
+              "gridCellYAlign": "stretch",
+              "id": "view_left",
+              "padding": "18",
+              "radius": "0",
+              "useUpdate": "false"
+            },
+            "events": [],
+            "children": [
+              {
+                "type": "button",
+                "attributes": {
+                  "id": "m1_cmd_backward",
+                  "useUpdate": "true",
+                  "width": "100"
+                },
+                "events": [
+                  {
+                    "name": "clicked",
+                    "attributes": {
+                      "action": "ACTION_BACKWARD",
+                      "callback": "onClick",
+                      "eventGroup": "m1",
+                      "eventType": "backward",
+                      "parameter": "100",
+                      "useMessages": "false"
+                    }
+                  }
+                ],
+                "children": [
+                  {
+                    "type": "label",
+                    "attributes": {
+                      "text": "M1 LINKS",
+                      "useUpdate": "false"
+                    },
+                    "events": [],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "type": "button",
+                "attributes": {
+                  "id": "m1_cmd_stop",
+                  "useUpdate": "true",
+                  "width": "100",
+                  "y": "60"
+                },
+                "events": [
+                  {
+                    "name": "clicked",
+                    "attributes": {
+                      "action": "ACTION_STOP",
+                      "callback": "onClick",
+                      "eventGroup": "m1",
+                      "eventType": "stop",
+                      "useMessages": "false"
+                    }
+                  }
+                ],
+                "children": [
+                  {
+                    "type": "label",
+                    "attributes": {
+                      "text": "M1 STOP",
+                      "useUpdate": "false"
+                    },
+                    "events": [],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "type": "button",
+                "attributes": {
+                  "id": "m1_cmd_forward",
+                  "useUpdate": "true",
+                  "width": "100",
+                  "y": "120"
+                },
+                "events": [
+                  {
+                    "name": "clicked",
+                    "attributes": {
+                      "action": "ACTION_FORWARD",
+                      "callback": "onClick",
+                      "eventGroup": "m1",
+                      "eventType": "forward",
+                      "parameter": "200",
+                      "useMessages": "false"
+                    }
+                  }
+                ],
+                "children": [
+                  {
+                    "type": "label",
+                    "attributes": {
+                      "text": "M1 RECHTS",
+                      "useUpdate": "false"
+                    },
+                    "events": [],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "type": "slider",
+                "attributes": {
+                  "height": "30",
+                  "id": "m1_cmd_speed",
+                  "maxValue": "100",
+                  "minValue": "0",
+                  "startValueAnim": "false",
+                  "useUpdate": "true",
+                  "valueAnim": "false",
+                  "width": "220",
+                  "x": "20",
+                  "y": "180"
+                },
+                "events": [
+                  {
+                    "name": "released",
+                    "attributes": {
+                      "action": "ACTION_SPEED",
+                      "callback": "onReleased",
+                      "eventGroup": "speed",
+                      "parameter": "WARNING",
+                      "useMessages": "false"
+                    }
+                  },
+                  {
+                    "name": "valueChanged",
+                    "attributes": {
+                      "action": "ACTION_SPEED"
+                    }
+                  }
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "attributes": {
+              "borderWidth": "1",
+              "gridCellColumnPos": "1",
+              "gridCellColumnSpan": "1",
+              "gridCellRowPos": "0",
+              "gridCellRowSpan": "1",
+              "gridCellXAlign": "stretch",
+              "gridCellYAlign": "stretch",
+              "id": "view_middle",
+              "padding": "18",
+              "radius": "0",
+              "useUpdate": "false"
+            },
+            "events": [],
+            "children": [
+              {
+                "type": "label",
+                "attributes": {
+                  "text": "Mitte",
+                  "useUpdate": "false",
+                  "x": "0",
+                  "y": "0"
+                },
+                "events": [],
+                "children": []
+              },
+              {
+                "type": "label",
+                "attributes": {
+                  "text": "Motorstatus:",
+                  "useUpdate": "false",
+                  "y": "50"
+                },
+                "events": [],
+                "children": []
+              },
+              {
+                "type": "label",
+                "attributes": {
+                  "id": "m1_lbl_status",
+                  "text": "Unknown",
+                  "useUpdate": "true",
+                  "x": "140",
+                  "y": "50"
+                },
+                "events": [],
+                "children": []
+              },
+              {
+                "type": "label",
+                "attributes": {
+                  "text": "Aktions Param:",
+                  "useUpdate": "false",
+                  "y": "80"
+                },
+                "events": [],
+                "children": []
+              },
+              {
+                "type": "label",
+                "attributes": {
+                  "id": "m1_lbl_parameter",
+                  "text": "Unknown",
+                  "useUpdate": "true",
+                  "x": "140",
+                  "y": "80"
+                },
+                "events": [],
+                "children": []
+              },
+              {
+                "type": "label",
+                "attributes": {
+                  "text": "Geschwindigkeit:",
+                  "useUpdate": "false",
+                  "y": "110"
+                },
+                "events": [],
+                "children": []
+              },
+              {
+                "type": "label",
+                "attributes": {
+                  "id": "m1_lbl_speed",
+                  "text": "Unknown",
+                  "useUpdate": "true",
+                  "x": "140",
+                  "y": "110"
+                },
+                "events": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "attributes": {
+              "borderWidth": "1",
+              "gridCellColumnPos": "2",
+              "gridCellColumnSpan": "1",
+              "gridCellRowPos": "0",
+              "gridCellRowSpan": "1",
+              "gridCellXAlign": "stretch",
+              "gridCellYAlign": "stretch",
+              "padding": "18",
+              "radius": "0",
+              "useUpdate": "false"
+            },
+            "events": [],
+            "children": [
+              {
+                "type": "label",
+                "attributes": {
+                  "text": "Kachel 3",
+                  "useUpdate": "false",
+                  "x": "0",
+                  "y": "0"
+                },
+                "events": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "attributes": {
+              "borderWidth": "1",
+              "gridCellColumnPos": "3",
+              "gridCellColumnSpan": "1",
+              "gridCellRowPos": "0",
+              "gridCellRowSpan": "1",
+              "gridCellXAlign": "stretch",
+              "gridCellYAlign": "stretch",
+              "padding": "18",
+              "radius": "0",
+              "useUpdate": "false"
+            },
+            "events": [],
+            "children": [
+              {
+                "type": "label",
+                "attributes": {
+                  "text": "Kachel 4",
+                  "useUpdate": "false",
+                  "x": "0",
+                  "y": "0"
+                },
+                "events": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "attributes": {
+              "borderWidth": "1",
+              "gridCellColumnPos": "0",
+              "gridCellColumnSpan": "1",
+              "gridCellRowPos": "1",
+              "gridCellRowSpan": "1",
+              "gridCellXAlign": "stretch",
+              "gridCellYAlign": "stretch",
+              "padding": "18",
+              "radius": "0",
+              "useUpdate": "false"
+            },
+            "events": [],
+            "children": [
+              {
+                "type": "label",
+                "attributes": {
+                  "text": "Kachel 5",
+                  "useUpdate": "false",
+                  "x": "0",
+                  "y": "0"
+                },
+                "events": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "attributes": {
+              "borderWidth": "1",
+              "gridCellColumnPos": "1",
+              "gridCellColumnSpan": "1",
+              "gridCellRowPos": "1",
+              "gridCellRowSpan": "1",
+              "gridCellXAlign": "stretch",
+              "gridCellYAlign": "stretch",
+              "padding": "18",
+              "radius": "0",
+              "useUpdate": "false"
+            },
+            "events": [],
+            "children": [
+              {
+                "type": "label",
+                "attributes": {
+                  "text": "Kachel 6",
+                  "useUpdate": "false",
+                  "x": "0",
+                  "y": "0"
+                },
+                "events": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "attributes": {
+              "borderWidth": "1",
+              "gridCellColumnPos": "2",
+              "gridCellColumnSpan": "1",
+              "gridCellRowPos": "1",
+              "gridCellRowSpan": "1",
+              "gridCellXAlign": "stretch",
+              "gridCellYAlign": "stretch",
+              "padding": "18",
+              "radius": "0",
+              "useUpdate": "false"
+            },
+            "events": [],
+            "children": [
+              {
+                "type": "label",
+                "attributes": {
+                  "text": "Kachel 7",
+                  "useUpdate": "false",
+                  "x": "0",
+                  "y": "0"
+                },
+                "events": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "attributes": {
+              "borderWidth": "1",
+              "gridCellColumnPos": "3",
+              "gridCellColumnSpan": "1",
+              "gridCellRowPos": "1",
+              "gridCellRowSpan": "1",
+              "gridCellXAlign": "stretch",
+              "gridCellYAlign": "stretch",
+              "padding": "18",
+              "radius": "0",
+              "useUpdate": "false"
+            },
+            "events": [],
+            "children": [
+              {
+                "type": "label",
+                "attributes": {
+                  "text": "Kachel 8",
+                  "useUpdate": "false",
+                  "x": "0",
+                  "y": "0"
+                },
+                "events": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "attributes": {
+              "backgroundColor": "0xffffff",
+              "borderColor": "0xd9e4ec",
+              "borderWidth": "1",
+              "gridCellColumnPos": "0",
+              "gridCellColumnSpan": "1",
+              "gridCellRowPos": "2",
+              "gridCellRowSpan": "1",
+              "gridCellXAlign": "stretch",
+              "gridCellYAlign": "stretch",
+              "padding": "18",
+              "radius": "14",
+              "useUpdate": "false"
+            },
+            "events": [],
+            "children": [
+              {
+                "type": "label",
+                "attributes": {
+                  "text": "Kachel 9",
+                  "useUpdate": "false",
+                  "x": "0",
+                  "y": "0"
+                },
+                "events": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "attributes": {
+              "backgroundColor": "0xffffff",
+              "borderColor": "0xd9e4ec",
+              "borderWidth": "1",
+              "gridCellColumnPos": "1",
+              "gridCellColumnSpan": "1",
+              "gridCellRowPos": "2",
+              "gridCellRowSpan": "1",
+              "gridCellXAlign": "stretch",
+              "gridCellYAlign": "stretch",
+              "padding": "18",
+              "radius": "14",
+              "useUpdate": "false"
+            },
+            "events": [],
+            "children": [
+              {
+                "type": "label",
+                "attributes": {
+                  "text": "Kachel 10",
+                  "useUpdate": "false",
+                  "x": "0",
+                  "y": "0"
+                },
+                "events": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "attributes": {
+              "backgroundColor": "0xffffff",
+              "borderColor": "0xd9e4ec",
+              "borderWidth": "1",
+              "gridCellColumnPos": "2",
+              "gridCellColumnSpan": "1",
+              "gridCellRowPos": "2",
+              "gridCellRowSpan": "1",
+              "gridCellXAlign": "stretch",
+              "gridCellYAlign": "stretch",
+              "padding": "18",
+              "radius": "14",
+              "useUpdate": "false"
+            },
+            "events": [],
+            "children": [
+              {
+                "type": "label",
+                "attributes": {
+                  "text": "Kachel 11",
+                  "useUpdate": "false",
+                  "x": "0",
+                  "y": "0"
+                },
+                "events": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "attributes": {
+              "backgroundColor": "0xffffff",
+              "borderColor": "0xd9e4ec",
+              "borderWidth": "1",
+              "gridCellColumnPos": "3",
+              "gridCellColumnSpan": "1",
+              "gridCellRowPos": "2",
+              "gridCellRowSpan": "1",
+              "gridCellXAlign": "stretch",
+              "gridCellYAlign": "stretch",
+              "padding": "18",
+              "radius": "14",
+              "useUpdate": "false"
+            },
+            "events": [],
+            "children": [
+              {
+                "type": "label",
+                "attributes": {
+                  "text": "Kachel 12",
+                  "useUpdate": "false",
+                  "x": "0",
+                  "y": "0"
+                },
+                "events": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

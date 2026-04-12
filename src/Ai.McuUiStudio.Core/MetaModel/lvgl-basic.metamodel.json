@@ -1,0 +1,847 @@
+{
+  "name": "LVGL XML",
+  "version": "9.3-base",
+  "attributeTypes": [
+    { "name": "string", "kind": "String" },
+    { "name": "integer", "kind": "Integer" },
+    { "name": "size", "kind": "Size" },
+    { "name": "coordinate", "kind": "Coordinate" },
+    { "name": "color", "kind": "Color", "allowedValues": [ "0x000000", "0xffffff", "0xf6f7fb", "0xd8dde6", "0xcccccc", "0x1f2937", "0x4b5563", "0x007acc", "0xff0000", "0x00ff00", "0x0000ff" ] },
+    { "name": "event", "kind": "Event" },
+    { "name": "boolean", "kind": "Boolean", "allowedValues": [ "true", "false" ] },
+    { "name": "resource", "kind": "Resource" },
+    { "name": "alignment", "kind": "Enum", "allowedValues": [ "top_left", "top_mid", "top_right", "left_mid", "center", "right_mid", "bottom_left", "bottom_mid", "bottom_right" ] },
+    { "name": "direction", "kind": "Enum", "allowedValues": [ "left", "right", "top", "bottom", "hor", "ver", "all" ] },
+    { "name": "layout", "kind": "Enum", "allowedValues": [ "none", "row", "column", "grid" ] },
+    { "name": "flex_flow", "kind": "Enum", "allowedValues": [ "row", "column", "row_wrap", "column_wrap", "row_reverse", "column_reverse" ] },
+    { "name": "flex_align", "kind": "Enum", "allowedValues": [ "start", "center", "end", "space_between", "space_around", "space_evenly" ] },
+    { "name": "grid_align", "kind": "Enum", "allowedValues": [ "start", "center", "end", "stretch", "space_evenly", "space_around", "space_between" ] },
+    { "name": "text_align", "kind": "Enum", "allowedValues": [ "left", "center", "right", "auto" ] },
+    { "name": "image_inner_align", "kind": "Enum", "allowedValues": [ "default", "top_left", "top_mid", "top_right", "bottom_left", "bottom_mid", "bottom_right", "left_mid", "right_mid", "center", "stretch", "tile", "contain", "cover" ] },
+    { "name": "grid_template", "kind": "String" },
+    { "name": "slider_mode", "kind": "Enum", "allowedValues": [ "normal", "range", "symmetrical" ] },
+    { "name": "slider_orientation", "kind": "Enum", "allowedValues": [ "auto", "horizontal", "vertical" ] },
+    { "name": "switch_orientation", "kind": "Enum", "allowedValues": [ "auto", "horizontal", "vertical" ] },
+    { "name": "long_mode", "kind": "Enum", "allowedValues": [ "wrap", "dots", "scroll", "scroll_circular", "clip" ] },
+    { "name": "bar_mode", "kind": "Enum", "allowedValues": [ "normal", "symmetrical", "range" ] },
+    { "name": "bar_orientation", "kind": "Enum", "allowedValues": [ "auto", "horizontal", "vertical" ] },
+    { "name": "arc_mode", "kind": "Enum", "allowedValues": [ "normal", "symmetrical", "reverse" ] },
+    { "name": "base_direction", "kind": "Enum", "allowedValues": [ "ltr", "rtl", "auto" ] },
+    { "name": "roller_mode", "kind": "Enum", "allowedValues": [ "normal", "infinite" ] },
+    { "name": "keyboard_mode", "kind": "Enum", "allowedValues": [ "text_lower", "text_upper", "text_arabic", "special", "number", "user_1", "user_2", "user_3", "user_4" ] },
+    { "name": "scale_mode", "kind": "Enum", "allowedValues": [ "horizontal_top", "horizontal_bottom", "vertical_left", "vertical_right", "round_inner", "round_outer" ] },
+    { "name": "chart_type", "kind": "Enum", "allowedValues": [ "none", "line", "bar", "stacked", "scatter" ] },
+    { "name": "chart_update_mode", "kind": "Enum", "allowedValues": [ "shift", "circular" ] },
+    { "name": "chart_axis", "kind": "Enum", "allowedValues": [ "primary_x", "primary_y", "secondary_x", "secondary_y" ] },
+    { "name": "table_cell_ctrl", "kind": "Enum", "allowedValues": [ "none", "merge_right", "text_crop", "custom_1", "custom_2", "custom_3", "custom_4" ] },
+    { "name": "buttonmatrix_ctrl", "kind": "Enum", "allowedValues": [ "none", "width_1", "width_2", "width_3", "width_4", "width_5", "width_6", "width_7", "width_8", "width_9", "width_10", "width_11", "width_12", "width_13", "width_14", "width_15", "hidden", "no_repeat", "disabled", "checkable", "checked", "click_trig", "popover", "recolor", "reserved_1", "reserved_2", "custom_1", "custom_2" ] },
+    { "name": "opa", "kind": "Integer" },
+    { "name": "font", "kind": "Resource", "allowedValues": [ "lv_montserrat_8", "lv_montserrat_10", "lv_montserrat_12", "lv_montserrat_14", "lv_montserrat_16", "lv_montserrat_18", "lv_montserrat_20", "lv_montserrat_22", "lv_montserrat_24", "lv_montserrat_26", "lv_montserrat_28", "lv_montserrat_30", "lv_montserrat_32", "lv_montserrat_34", "lv_montserrat_36", "lv_montserrat_38", "lv_montserrat_40", "lv_montserrat_42", "lv_montserrat_44", "lv_montserrat_46", "lv_montserrat_48" ] },
+    { "name": "image_src", "kind": "Resource" }
+  ],
+  "elements": [
+    {
+      "name": "screen",
+      "displayName": "Screen",
+      "category": "Root",
+      "attributes": [
+        { "name": "name", "type": "string", "required": true },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "bg_color", "type": "color" },
+        { "name": "bg_opa", "type": "opa" },
+        { "name": "pad_all", "type": "size" },
+        { "name": "pad_row", "type": "size" },
+        { "name": "pad_column", "type": "size" },
+        { "name": "grid_column_dsc_array", "type": "grid_template" },
+        { "name": "grid_row_dsc_array", "type": "grid_template" }
+      ],
+      "children": { "allowed": [ "view" ], "min": 0 }
+    },
+    {
+      "name": "view",
+      "displayName": "View",
+      "category": "Root",
+      "attributes": [
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "layout", "type": "layout" },
+        { "name": "flex_flow", "type": "flex_flow" },
+        { "name": "flex_main_place", "type": "flex_align" },
+        { "name": "flex_cross_place", "type": "flex_align" },
+        { "name": "flex_track_place", "type": "flex_align" },
+        { "name": "pad_all", "type": "size" },
+        { "name": "pad_row", "type": "size" },
+        { "name": "pad_column", "type": "size" },
+        { "name": "bg_color", "type": "color" },
+        { "name": "bg_opa", "type": "opa" },
+        { "name": "grid_column_dsc_array", "type": "grid_template" },
+        { "name": "grid_row_dsc_array", "type": "grid_template" }
+      ],
+      "children": { "allowed": [ "lv_obj", "lv_3dtexture", "lv_animimg", "lv_arc", "lv_arclabel", "lv_bar", "lv_button", "lv_buttonmatrix", "lv_calendar", "lv_canvas", "lv_chart", "lv_checkbox", "lv_dropdown", "lv_image", "lv_imagebutton", "lv_keyboard", "lv_label", "lv_led", "lv_line", "lv_list", "lv_lottie", "lv_menu", "lv_msgbox", "lv_roller", "lv_scale", "lv_slider", "lv_spangroup", "lv_spinbox", "lv_spinner", "lv_switch", "lv_table", "lv_tabview", "lv_textarea", "lv_tileview", "lv_win" ], "min": 0 }
+    },
+    {
+      "name": "lv_obj",
+      "displayName": "Base Widget",
+      "category": "Core",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "x", "type": "coordinate" },
+        { "name": "y", "type": "coordinate" },
+        { "name": "align", "type": "alignment" },
+        { "name": "layout", "type": "layout" },
+        { "name": "flex_flow", "type": "flex_flow" },
+        { "name": "flex_main_place", "type": "flex_align" },
+        { "name": "flex_cross_place", "type": "flex_align" },
+        { "name": "flex_track_place", "type": "flex_align" },
+        { "name": "pad_all", "type": "size" },
+        { "name": "pad_row", "type": "size" },
+        { "name": "pad_column", "type": "size" },
+        { "name": "bg_color", "type": "color" },
+        { "name": "bg_opa", "type": "opa" },
+        { "name": "border_width", "type": "size" },
+        { "name": "border_color", "type": "color" },
+        { "name": "radius", "type": "size" },
+        { "name": "opa", "type": "opa" },
+        { "name": "grid_column_dsc_array", "type": "grid_template" },
+        { "name": "grid_row_dsc_array", "type": "grid_template" },
+        { "name": "grid_cell_column_pos", "type": "integer" },
+        { "name": "grid_cell_column_span", "type": "integer" },
+        { "name": "grid_cell_x_align", "type": "grid_align" },
+        { "name": "grid_cell_row_pos", "type": "integer" },
+        { "name": "grid_cell_row_span", "type": "integer" },
+        { "name": "grid_cell_y_align", "type": "grid_align" },
+        { "name": "hidden", "type": "boolean" },
+        { "name": "clickable", "type": "boolean" },
+        { "name": "scrollable", "type": "boolean" },
+        { "name": "on_pressed", "type": "event" },
+        { "name": "on_pressing", "type": "event" },
+        { "name": "on_released", "type": "event" },
+        { "name": "on_clicked", "type": "event" }
+      ],
+      "children": { "allowed": [ "lv_obj", "lv_3dtexture", "lv_animimg", "lv_arc", "lv_arclabel", "lv_bar", "lv_button", "lv_buttonmatrix", "lv_calendar", "lv_canvas", "lv_chart", "lv_checkbox", "lv_dropdown", "lv_image", "lv_imagebutton", "lv_keyboard", "lv_label", "lv_led", "lv_line", "lv_list", "lv_lottie", "lv_menu", "lv_msgbox", "lv_roller", "lv_scale", "lv_slider", "lv_spangroup", "lv_spinbox", "lv_spinner", "lv_switch", "lv_table", "lv_tabview", "lv_textarea", "lv_tileview", "lv_win" ], "min": 0 }
+    },
+    {
+      "name": "lv_3dtexture",
+      "displayName": "3D Texture",
+      "category": "Media",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "x", "type": "coordinate" },
+        { "name": "y", "type": "coordinate" },
+        { "name": "align", "type": "alignment" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_animimg",
+      "displayName": "Animation Image",
+      "category": "Media",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "src", "type": "image_src" },
+        { "name": "duration", "type": "integer" },
+        { "name": "repeat_count", "type": "integer" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_arc",
+      "displayName": "Arc",
+      "category": "Value",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "value", "type": "integer" },
+        { "name": "min_value", "type": "integer" },
+        { "name": "max_value", "type": "integer" },
+        { "name": "rotation", "type": "integer" },
+        { "name": "start_angle", "type": "integer" },
+        { "name": "end_angle", "type": "integer" },
+        { "name": "bg_start_angle", "type": "integer" },
+        { "name": "bg_end_angle", "type": "integer" },
+        { "name": "mode", "type": "arc_mode" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "on_pressed", "type": "event" },
+        { "name": "on_released", "type": "event" },
+        { "name": "on_value_changed", "type": "event" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_arclabel",
+      "displayName": "Arc Label",
+      "category": "Text",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "text", "type": "string", "required": true },
+        { "name": "color", "type": "color" },
+        { "name": "start_angle", "type": "integer" },
+        { "name": "radius", "type": "integer" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_bar",
+      "displayName": "Bar",
+      "category": "Value",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "value", "type": "integer" },
+        { "name": "start_value", "type": "integer" },
+        { "name": "value_animated", "type": "boolean" },
+        { "name": "start_value_animated", "type": "boolean" },
+        { "name": "min_value", "type": "integer" },
+        { "name": "max_value", "type": "integer" },
+        { "name": "mode", "type": "bar_mode" },
+        { "name": "orientation", "type": "bar_orientation" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "on_pressed", "type": "event" },
+        { "name": "on_released", "type": "event" },
+        { "name": "on_value_changed", "type": "event" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_button",
+      "displayName": "Button",
+      "category": "Input",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "x", "type": "coordinate" },
+        { "name": "y", "type": "coordinate" },
+        { "name": "align", "type": "alignment" },
+        { "name": "pad_all", "type": "size" },
+        { "name": "pad_row", "type": "size" },
+        { "name": "pad_column", "type": "size" },
+        { "name": "bg_color", "type": "color" },
+        { "name": "bg_opa", "type": "opa" },
+        { "name": "border_width", "type": "size" },
+        { "name": "border_color", "type": "color" },
+        { "name": "radius", "type": "size" },
+        { "name": "on_pressed", "type": "event" },
+        { "name": "on_released", "type": "event" },
+        { "name": "on_clicked", "type": "event" }
+      ],
+      "children": { "allowed": [ "lv_label", "lv_image", "lv_imagebutton", "lv_spinner" ], "min": 0 }
+    },
+    {
+      "name": "lv_buttonmatrix",
+      "displayName": "Button Matrix",
+      "category": "Input",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "options", "type": "string" },
+        { "name": "ctrl_map", "type": "string" },
+        { "name": "one_checked", "type": "boolean" },
+        { "name": "selected_button", "type": "integer" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "on_pressed", "type": "event" },
+        { "name": "on_released", "type": "event" },
+        { "name": "on_value_changed", "type": "event" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_calendar",
+      "displayName": "Calendar",
+      "category": "Input",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "today_year", "type": "integer" },
+        { "name": "today_month", "type": "integer" },
+        { "name": "today_day", "type": "integer" },
+        { "name": "shown_year", "type": "integer" },
+        { "name": "shown_month", "type": "integer" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" }
+      ],
+      "children": { "allowed": [ "lv_calendar-header_arrow", "lv_calendar-header_dropdown" ], "min": 0 }
+    },
+    {
+      "name": "lv_calendar-header_arrow",
+      "displayName": "Calendar Header Arrows",
+      "category": "Input",
+      "attributes": [],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_calendar-header_dropdown",
+      "displayName": "Calendar Header Dropdown",
+      "category": "Input",
+      "attributes": [],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_canvas",
+      "displayName": "Canvas",
+      "category": "Media",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "buffer_width", "type": "integer" },
+        { "name": "buffer_height", "type": "integer" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_chart",
+      "displayName": "Chart",
+      "category": "Data",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "type", "type": "chart_type" },
+        { "name": "point_count", "type": "integer" },
+        { "name": "update_mode", "type": "chart_update_mode" },
+        { "name": "hor_div_line_count", "type": "integer" },
+        { "name": "ver_div_line_count", "type": "integer" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "on_pressed", "type": "event" },
+        { "name": "on_released", "type": "event" },
+        { "name": "on_value_changed", "type": "event" }
+      ],
+      "children": { "allowed": [ "lv_chart-series", "lv_chart-cursor", "lv_chart-axis" ], "min": 0 }
+    },
+    {
+      "name": "lv_chart-series",
+      "displayName": "Chart Series",
+      "category": "Data",
+      "attributes": [
+        { "name": "color", "type": "color", "required": true },
+        { "name": "axis", "type": "chart_axis" },
+        { "name": "values", "type": "string" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_chart-cursor",
+      "displayName": "Chart Cursor",
+      "category": "Data",
+      "attributes": [
+        { "name": "color", "type": "color", "required": true },
+        { "name": "dir", "type": "direction" },
+        { "name": "pos_x", "type": "integer" },
+        { "name": "pos_y", "type": "integer" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_chart-axis",
+      "displayName": "Chart Axis",
+      "category": "Data",
+      "attributes": [
+        { "name": "axis", "type": "chart_axis", "required": true },
+        { "name": "min_value", "type": "integer" },
+        { "name": "max_value", "type": "integer" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_checkbox",
+      "displayName": "Checkbox",
+      "category": "Input",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "text", "type": "string" },
+        { "name": "checked", "type": "boolean" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "x", "type": "coordinate" },
+        { "name": "y", "type": "coordinate" },
+        { "name": "align", "type": "alignment" },
+        { "name": "text_align", "type": "text_align" },
+        { "name": "font", "type": "font" },
+        { "name": "color", "type": "color" },
+        { "name": "on_pressed", "type": "event" },
+        { "name": "on_released", "type": "event" },
+        { "name": "on_value_changed", "type": "event" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_dropdown",
+      "displayName": "Dropdown",
+      "category": "Input",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "text", "type": "string" },
+        { "name": "options", "type": "string" },
+        { "name": "selected", "type": "integer" },
+        { "name": "direction", "type": "direction" },
+        { "name": "selected_highlight", "type": "boolean" },
+        { "name": "symbol", "type": "string" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "x", "type": "coordinate" },
+        { "name": "y", "type": "coordinate" },
+        { "name": "align", "type": "alignment" },
+        { "name": "on_pressed", "type": "event" },
+        { "name": "on_released", "type": "event" },
+        { "name": "on_value_changed", "type": "event" }
+      ],
+      "children": { "allowed": [ "lv_dropdown-list" ], "min": 0 }
+    },
+    {
+      "name": "lv_dropdown-list",
+      "displayName": "Dropdown List",
+      "category": "Input",
+      "attributes": [
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "pad_all", "type": "size" },
+        { "name": "pad_row", "type": "size" },
+        { "name": "pad_column", "type": "size" },
+        { "name": "bg_color", "type": "color" },
+        { "name": "bg_opa", "type": "opa" },
+        { "name": "border_width", "type": "size" },
+        { "name": "border_color", "type": "color" },
+        { "name": "radius", "type": "size" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_image",
+      "displayName": "Image",
+      "category": "Media",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "src", "type": "image_src", "required": true },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "x", "type": "coordinate" },
+        { "name": "y", "type": "coordinate" },
+        { "name": "align", "type": "alignment" },
+        { "name": "inner_align", "type": "image_inner_align" },
+        { "name": "rotation", "type": "integer" },
+        { "name": "scale_x", "type": "integer" },
+        { "name": "scale_y", "type": "integer" },
+        { "name": "pivot_x", "type": "size" },
+        { "name": "pivot_y", "type": "size" },
+        { "name": "opa", "type": "opa" },
+        { "name": "on_pressed", "type": "event" },
+        { "name": "on_released", "type": "event" },
+        { "name": "on_clicked", "type": "event" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_imagebutton",
+      "displayName": "Image Button",
+      "category": "Input",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "src", "type": "image_src" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "on_clicked", "type": "event" }
+      ],
+      "children": { "allowed": [ "lv_label", "lv_image" ], "min": 0 }
+    },
+    {
+      "name": "lv_keyboard",
+      "displayName": "Keyboard",
+      "category": "Input",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "mode", "type": "keyboard_mode" },
+        { "name": "popover", "type": "boolean" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "x", "type": "coordinate" },
+        { "name": "y", "type": "coordinate" },
+        { "name": "align", "type": "alignment" },
+        { "name": "on_pressed", "type": "event" },
+        { "name": "on_released", "type": "event" },
+        { "name": "on_value_changed", "type": "event" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_label",
+      "displayName": "Label",
+      "category": "Text",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "text", "type": "string", "required": true },
+        { "name": "translation_tag", "type": "string" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "x", "type": "coordinate" },
+        { "name": "y", "type": "coordinate" },
+        { "name": "align", "type": "alignment" },
+        { "name": "long_mode", "type": "long_mode" },
+        { "name": "color", "type": "color" },
+        { "name": "font", "type": "font" },
+        { "name": "base_dir", "type": "base_direction" },
+        { "name": "text_align", "type": "text_align" },
+        { "name": "opa", "type": "opa" },
+        { "name": "on_pressed", "type": "event" },
+        { "name": "on_released", "type": "event" },
+        { "name": "on_clicked", "type": "event" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_led",
+      "displayName": "LED",
+      "category": "Display",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "brightness", "type": "integer" },
+        { "name": "color", "type": "color" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_line",
+      "displayName": "Line",
+      "category": "Drawing",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "points", "type": "string", "required": true },
+        { "name": "y_invert", "type": "boolean" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_list",
+      "displayName": "List",
+      "category": "Container",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" }
+      ],
+      "children": { "allowed": [ "lv_button", "lv_label", "lv_image" ], "min": 0 }
+    },
+    {
+      "name": "lv_lottie",
+      "displayName": "Lottie",
+      "category": "Media",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "src", "type": "resource", "required": true },
+        { "name": "auto_play", "type": "boolean" },
+        { "name": "loop", "type": "boolean" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_menu",
+      "displayName": "Menu",
+      "category": "Container",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "mode_root_back_button", "type": "boolean" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" }
+      ],
+      "children": { "allowed": [ "lv_obj", "lv_label", "lv_button", "lv_image", "lv_list" ], "min": 0 }
+    },
+    {
+      "name": "lv_msgbox",
+      "displayName": "Message Box",
+      "category": "Container",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "title", "type": "string" },
+        { "name": "text", "type": "string" },
+        { "name": "modal", "type": "boolean" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" }
+      ],
+      "children": { "allowed": [ "lv_label", "lv_button", "lv_buttonmatrix", "lv_image" ], "min": 0 }
+    },
+    {
+      "name": "lv_roller",
+      "displayName": "Roller",
+      "category": "Input",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "options", "type": "string" },
+        { "name": "options_mode", "type": "roller_mode" },
+        { "name": "selected", "type": "integer" },
+        { "name": "selected_animated", "type": "boolean" },
+        { "name": "visible_row_count", "type": "integer" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "x", "type": "coordinate" },
+        { "name": "y", "type": "coordinate" },
+        { "name": "align", "type": "alignment" },
+        { "name": "on_pressed", "type": "event" },
+        { "name": "on_released", "type": "event" },
+        { "name": "on_value_changed", "type": "event" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_scale",
+      "displayName": "Scale",
+      "category": "Value",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "mode", "type": "scale_mode" },
+        { "name": "total_tick_count", "type": "integer" },
+        { "name": "major_tick_every", "type": "integer" },
+        { "name": "label_show", "type": "boolean" },
+        { "name": "min_value", "type": "integer" },
+        { "name": "max_value", "type": "integer" },
+        { "name": "angle_range", "type": "integer" },
+        { "name": "rotation", "type": "integer" },
+        { "name": "text_src", "type": "string" },
+        { "name": "post_draw", "type": "boolean" },
+        { "name": "draw_ticks_on_top", "type": "boolean" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "on_pressed", "type": "event" },
+        { "name": "on_released", "type": "event" },
+        { "name": "on_value_changed", "type": "event" }
+      ],
+      "children": { "allowed": [ "lv_scale-section" ], "min": 0 }
+    },
+    {
+      "name": "lv_scale-section",
+      "displayName": "Scale Section",
+      "category": "Value",
+      "attributes": [
+        { "name": "min_value", "type": "integer" },
+        { "name": "max_value", "type": "integer" },
+        { "name": "style_main", "type": "string" },
+        { "name": "style_indicator", "type": "string" },
+        { "name": "style_items", "type": "string" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_slider",
+      "displayName": "Slider",
+      "category": "Value",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "value", "type": "integer" },
+        { "name": "start_value", "type": "integer" },
+        { "name": "value_anim", "type": "boolean" },
+        { "name": "start_value_anim", "type": "boolean" },
+        { "name": "min_value", "type": "integer" },
+        { "name": "max_value", "type": "integer" },
+        { "name": "mode", "type": "slider_mode" },
+        { "name": "orientation", "type": "slider_orientation" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "x", "type": "coordinate" },
+        { "name": "y", "type": "coordinate" },
+        { "name": "align", "type": "alignment" },
+        { "name": "on_pressed", "type": "event" },
+        { "name": "on_released", "type": "event" },
+        { "name": "on_value_changed", "type": "event" }
+      ],
+      "children": { "allowed": [ "lv_label" ], "min": 0 }
+    },
+    {
+      "name": "lv_spangroup",
+      "displayName": "Spangroup",
+      "category": "Text",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "mode", "type": "long_mode" },
+        { "name": "align", "type": "alignment" },
+        { "name": "overflow", "type": "boolean" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" }
+      ],
+      "children": { "allowed": [ "lv_label" ], "min": 0 }
+    },
+    {
+      "name": "lv_spinbox",
+      "displayName": "Spinbox",
+      "category": "Input",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "value", "type": "integer" },
+        { "name": "min_value", "type": "integer" },
+        { "name": "max_value", "type": "integer" },
+        { "name": "step", "type": "integer" },
+        { "name": "digit_count", "type": "integer" },
+        { "name": "dec_point_pos", "type": "integer" },
+        { "name": "rollover", "type": "boolean" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "x", "type": "coordinate" },
+        { "name": "y", "type": "coordinate" },
+        { "name": "align", "type": "alignment" },
+        { "name": "on_pressed", "type": "event" },
+        { "name": "on_released", "type": "event" },
+        { "name": "on_value_changed", "type": "event" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_spinner",
+      "displayName": "Spinner",
+      "category": "Display",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "anim_time", "type": "integer" },
+        { "name": "arc_length", "type": "integer" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_switch",
+      "displayName": "Switch",
+      "category": "Input",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "checked", "type": "boolean" },
+        { "name": "orientation", "type": "switch_orientation" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "x", "type": "coordinate" },
+        { "name": "y", "type": "coordinate" },
+        { "name": "align", "type": "alignment" },
+        { "name": "on_pressed", "type": "event" },
+        { "name": "on_released", "type": "event" },
+        { "name": "on_value_changed", "type": "event" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_table",
+      "displayName": "Table",
+      "category": "Data",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "row_count", "type": "integer" },
+        { "name": "column_count", "type": "integer" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "on_pressed", "type": "event" },
+        { "name": "on_released", "type": "event" },
+        { "name": "on_value_changed", "type": "event" }
+      ],
+      "children": { "allowed": [ "lv_table-column", "lv_table-cell" ], "min": 0 }
+    },
+    {
+      "name": "lv_table-column",
+      "displayName": "Table Column",
+      "category": "Data",
+      "attributes": [
+        { "name": "column", "type": "integer", "required": true },
+        { "name": "width", "type": "size" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_table-cell",
+      "displayName": "Table Cell",
+      "category": "Data",
+      "attributes": [
+        { "name": "row", "type": "integer", "required": true },
+        { "name": "column", "type": "integer", "required": true },
+        { "name": "value", "type": "string" },
+        { "name": "ctrl", "type": "string" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_tabview",
+      "displayName": "Tab View",
+      "category": "Container",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "tab_bar_position", "type": "direction" },
+        { "name": "active", "type": "integer" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "on_pressed", "type": "event" },
+        { "name": "on_released", "type": "event" },
+        { "name": "on_value_changed", "type": "event" }
+      ],
+      "children": { "allowed": [ "lv_tabview-tab" ], "min": 0 }
+    },
+    {
+      "name": "lv_tabview-tab",
+      "displayName": "Tab",
+      "category": "Container",
+      "attributes": [
+        { "name": "text", "type": "string", "required": true },
+        { "name": "id", "type": "string" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" }
+      ],
+      "children": { "allowed": [ "lv_obj", "lv_label", "lv_button", "lv_list", "lv_image", "lv_slider", "lv_table", "lv_textarea", "lv_chart", "lv_checkbox", "lv_switch", "lv_dropdown", "lv_bar", "lv_arc" ], "min": 0 }
+    },
+    {
+      "name": "lv_textarea",
+      "displayName": "Text Area",
+      "category": "Input",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "text", "type": "string" },
+        { "name": "placeholder_text", "type": "string" },
+        { "name": "password_mode", "type": "boolean" },
+        { "name": "password_show_time", "type": "integer" },
+        { "name": "one_line", "type": "boolean" },
+        { "name": "text_selection", "type": "boolean" },
+        { "name": "cursor_pos", "type": "integer" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" },
+        { "name": "x", "type": "coordinate" },
+        { "name": "y", "type": "coordinate" },
+        { "name": "align", "type": "alignment" },
+        { "name": "text_align", "type": "text_align" },
+        { "name": "font", "type": "font" },
+        { "name": "color", "type": "color" },
+        { "name": "on_insert", "type": "event" },
+        { "name": "on_ready", "type": "event" },
+        { "name": "on_pressed", "type": "event" },
+        { "name": "on_released", "type": "event" },
+        { "name": "on_value_changed", "type": "event" }
+      ],
+      "children": { "allowed": [], "min": 0, "max": 0 }
+    },
+    {
+      "name": "lv_tileview",
+      "displayName": "Tile View",
+      "category": "Container",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "tile_act_x", "type": "integer" },
+        { "name": "tile_act_y", "type": "integer" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" }
+      ],
+      "children": { "allowed": [ "lv_obj", "lv_label", "lv_button", "lv_image", "lv_list", "lv_chart", "lv_table" ], "min": 0 }
+    },
+    {
+      "name": "lv_win",
+      "displayName": "Window",
+      "category": "Container",
+      "attributes": [
+        { "name": "id", "type": "string" },
+        { "name": "title", "type": "string" },
+        { "name": "width", "type": "size" },
+        { "name": "height", "type": "size" }
+      ],
+      "children": { "allowed": [ "lv_obj", "lv_label", "lv_button", "lv_image", "lv_list", "lv_table", "lv_textarea", "lv_chart" ], "min": 0 }
+    }
+  ]
+}

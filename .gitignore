@@ -1,0 +1,49 @@
+# OS / Finder
+.DS_Store
+LOCAL_STATUS.md
+
+# Editors / local tooling
+.vscode/
+.claude/
+*.swp
+*.swo
+*.orig
+
+# .NET / C#
+**/bin/
+**/obj/
+*.user
+*.suo
+TestResults/
+
+# Local build output from examples, simulator, embedded targets
+**/build/
+**/publish/
+native/lvgl_simulator_host/build-macos/
+native/lvgl_simulator_host/build-macos-runtime/
+native/lvgl_simulator_host/build-windows/
+platforms/macos-arm64/app-publish/
+platforms/macos-arm64/simulator/
+platforms/macos-arm64/release/
+platforms/macos-arm64/MCU UI Studio for LVGL macOS ARM64/
+platforms/windows/app-publish/
+platforms/windows/simulator/
+platforms/windows/release/
+platforms/windows/MCU UI Studio for LVGL Windows x64/
+platforms/linux/app-publish/
+platforms/linux/simulator/
+platforms/linux/release/
+platforms/macos-arm64/*.zip
+platforms/macos-arm64/*.dmg
+platforms/windows/*.zip
+platforms/linux/*.zip
+
+# Generated documentation output / local published docs
+usermanual/site/
+GitHub/site/
+
+# Internal local-only working docs
+GitHub/docs/
+
+# Optional local caches
+.mkdocs_cache/

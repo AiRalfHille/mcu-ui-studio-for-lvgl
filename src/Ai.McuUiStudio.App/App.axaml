@@ -1,0 +1,56 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:themes="clr-namespace:Avalonia.Themes.Fluent;assembly=Avalonia.Themes.Fluent"
+             x:Class="Ai.McuUiStudio.App.App">
+  <Application.Styles>
+    <themes:FluentTheme>
+      <themes:FluentTheme.Palettes>
+        <themes:ColorPaletteResources x:Key="Light" Accent="#62CCED" />
+        <themes:ColorPaletteResources x:Key="Dark" Accent="#62CCED" />
+      </themes:FluentTheme.Palettes>
+    </themes:FluentTheme>
+
+    <Style Selector="ScrollViewer">
+      <Setter Property="AllowAutoHide" Value="False" />
+    </Style>
+
+    <Style Selector="ScrollBar:vertical">
+      <Setter Property="Width" Value="22" />
+      <Setter Property="MinWidth" Value="22" />
+      <Setter Property="Margin" Value="14,0,0,0" />
+    </Style>
+
+    <Style Selector="ScrollBar:horizontal">
+      <Setter Property="Height" Value="22" />
+      <Setter Property="MinHeight" Value="22" />
+      <Setter Property="Margin" Value="0,14,0,0" />
+    </Style>
+
+    <Style Selector="TextBox /template/ ScrollViewer">
+      <Setter Property="AllowAutoHide" Value="False" />
+    </Style>
+
+    <Style Selector="TextBox /template/ ScrollViewer ScrollBar:vertical">
+      <Setter Property="Width" Value="22" />
+      <Setter Property="MinWidth" Value="22" />
+      <Setter Property="Margin" Value="14,0,0,0" />
+    </Style>
+
+    <Style Selector="TextBox /template/ ScrollViewer ScrollBar:horizontal">
+      <Setter Property="Height" Value="22" />
+      <Setter Property="MinHeight" Value="22" />
+      <Setter Property="Margin" Value="0,14,0,0" />
+    </Style>
+
+    <Style Selector="TreeView /template/ ScrollViewer#PART_ScrollViewer">
+      <Setter Property="AllowAutoHide" Value="False" />
+    </Style>
+
+    <Style Selector="TreeView /template/ ScrollViewer#PART_ScrollViewer ScrollBar:vertical">
+      <Setter Property="Width" Value="22" />
+      <Setter Property="MinWidth" Value="22" />
+      <Setter Property="Margin" Value="14,0,0,0" />
+    </Style>
+
+  </Application.Styles>
+</Application>

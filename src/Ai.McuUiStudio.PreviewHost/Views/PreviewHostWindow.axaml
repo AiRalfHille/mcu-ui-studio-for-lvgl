@@ -1,0 +1,31 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Ai.McuUiStudio.PreviewHost.Views.PreviewHostWindow"
+        Width="860"
+        Height="620"
+        Title="LVGL C Preview">
+  <Grid RowDefinitions="Auto,Auto,*" Margin="16">
+    <Border Background="#11000000" Padding="12,10" BorderThickness="0,0,0,1">
+      <Grid ColumnDefinitions="*,Auto">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="{Binding DocumentName}" />
+        <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding LastUpdatedLabel}" Opacity="0.7" />
+      </Grid>
+    </Border>
+
+    <StackPanel Grid.Row="1" Margin="0,12,0,12" Spacing="6">
+      <TextBlock Text="{Binding Status}" />
+      <TextBlock Opacity="0.7" Text="Externer Preview-Prozess. Zeigt aktuell den generierten LVGL-C-Code." />
+    </StackPanel>
+
+    <Grid Grid.Row="2" RowDefinitions="Auto,*">
+      <TextBlock FontSize="15" FontWeight="SemiBold" Text="Generierter LVGL-C-Code" />
+      <TextBox Grid.Row="1"
+               Margin="0,12,0,0"
+               AcceptsReturn="True"
+               IsReadOnly="True"
+               Text="{Binding Content}"
+               FontFamily="Cascadia Code, Consolas, monospace"
+               VerticalContentAlignment="Top" />
+    </Grid>
+  </Grid>
+</Window>

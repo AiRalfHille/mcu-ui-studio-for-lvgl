@@ -1,0 +1,34 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        x:Class="Ai.McuUiStudio.App.Views.ChoiceDialog"
+        mc:Ignorable="d"
+        Width="620"
+        Height="260"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner"
+        Title="{Binding Title}">
+  <Grid RowDefinitions="*,Auto" Margin="16">
+    <TextBlock Text="{Binding Message}"
+               TextWrapping="Wrap"
+               VerticalAlignment="Center" />
+    <StackPanel Grid.Row="1"
+                Margin="0,16,0,0"
+                Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                Spacing="8">
+      <Button Content="{Binding PrimaryLabel}" Click="PrimaryClick" />
+      <Button Content="{Binding SecondaryLabel}"
+              Click="SecondaryClick"
+              IsVisible="{Binding HasSecondaryLabel}" />
+      <Border Width="1"
+              Height="24"
+              Background="#22000000"
+              Margin="4,0"
+              IsVisible="{Binding HasSecondaryLabel}" />
+      <Button Content="{Binding CancelLabel}"
+              Click="CancelClick"
+              IsVisible="{Binding HasCancelLabel}" />
+    </StackPanel>
+  </Grid>
+</Window>

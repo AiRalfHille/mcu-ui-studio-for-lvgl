@@ -1,0 +1,91 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        x:Class="Ai.McuUiStudio.App.Views.LvConfDialog"
+        mc:Ignorable="d"
+        Width="1120"
+        Height="720"
+        MinWidth="840"
+        MinHeight="520"
+        WindowStartupLocation="CenterOwner"
+        Title="{Binding Title}">
+  <Grid RowDefinitions="Auto,Auto,Auto,*,Auto" Margin="16">
+    <Border Padding="14,10"
+            Background="#BE4D25"
+            CornerRadius="4">
+      <TextBlock FontSize="18"
+                 FontWeight="SemiBold"
+                 Foreground="White"
+                 Text="{Binding Title}" />
+    </Border>
+
+    <Grid Grid.Row="1" ColumnDefinitions="Auto,*" Margin="0,16,0,12">
+      <TextBlock VerticalAlignment="Center"
+                 FontWeight="SemiBold"
+                 Text="{Binding FileLabel}" />
+      <TextBlock Grid.Column="1"
+                 Margin="12,0,0,0"
+                 VerticalAlignment="Center"
+                 Text="{Binding FilePath}"
+                 TextWrapping="Wrap" />
+    </Grid>
+
+    <Border Grid.Row="2"
+            Padding="10,8"
+            Background="#14000000"
+            BorderBrush="#22000000"
+            BorderThickness="0,0,0,1">
+      <Grid ColumnDefinitions="240,220,*">
+        <TextBlock FontWeight="SemiBold" Text="{Binding PropertyHeader}" />
+        <TextBlock Grid.Column="1" FontWeight="SemiBold" Text="{Binding ValueHeader}" />
+        <TextBlock Grid.Column="2" FontWeight="SemiBold" Text="{Binding DescriptionHeader}" />
+      </Grid>
+    </Border>
+
+    <Border Grid.Row="3"
+            BorderBrush="#22000000"
+            BorderThickness="0,0,0,1">
+      <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                    VerticalScrollBarVisibility="Auto">
+        <ItemsControl ItemsSource="{Binding Options}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate>
+              <Border Padding="10,8"
+                      BorderBrush="#14000000"
+                      BorderThickness="0,0,0,1">
+                <Grid ColumnDefinitions="240,220,*">
+                  <TextBlock VerticalAlignment="Center"
+                             Text="{Binding Name}" />
+                  <TextBox Grid.Column="1"
+                           MinWidth="180"
+                           Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" />
+                  <TextBlock Grid.Column="2"
+                             Margin="12,0,0,0"
+                             VerticalAlignment="Center"
+                             Text="{Binding Description}"
+                             TextWrapping="Wrap" />
+                </Grid>
+              </Border>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </ScrollViewer>
+    </Border>
+
+    <Grid Grid.Row="4"
+          Margin="0,12,0,0"
+          ColumnDefinitions="*,Auto"
+          ColumnSpacing="12">
+      <TextBlock VerticalAlignment="Center"
+                 Foreground="#666666"
+                 Text="{Binding StatusMessage}" />
+      <StackPanel Grid.Column="1"
+                  Orientation="Horizontal"
+                  HorizontalAlignment="Right"
+                  Spacing="8">
+        <Button Content="{Binding SaveLabel}" Click="SaveClick" />
+        <Button Content="{Binding CancelLabel}" Click="CancelClick" />
+      </StackPanel>
+    </Grid>
+  </Grid>
+</Window>

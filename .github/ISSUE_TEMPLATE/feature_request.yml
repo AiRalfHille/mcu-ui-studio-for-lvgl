@@ -1,0 +1,38 @@
+name: Feature Request
+description: Suggest a new feature or improvement
+title: "[Feature]: "
+labels:
+  - feature-request
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please describe the requested feature in a practical way.
+  - type: input
+    id: area
+    attributes:
+      label: Area
+      description: Which part of the project would this affect?
+      placeholder: Editor, Preview, Generator, Example project, Documentation
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or motivation
+      description: What is missing or difficult today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should the project do instead?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Optional examples, screenshots, or constraints
+

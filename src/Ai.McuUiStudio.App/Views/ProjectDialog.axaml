@@ -1,0 +1,125 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        x:Class="Ai.McuUiStudio.App.Views.ProjectDialog"
+        mc:Ignorable="d"
+        Width="760"
+        Height="860"
+        MinWidth="680"
+        MinHeight="820"
+        CanResize="False"
+        WindowDecorations="BorderOnly"
+        WindowStartupLocation="CenterOwner"
+        Title="{Binding TitleText}">
+  <Grid RowDefinitions="Auto,*,Auto" Margin="16">
+    <Border Padding="14,10"
+            Background="#BE4D25"
+            CornerRadius="4">
+      <TextBlock FontSize="18"
+                 FontWeight="SemiBold"
+                 Foreground="White"
+                 Text="{Binding TitleText}" />
+    </Border>
+
+    <ScrollViewer Grid.Row="1"
+                  Margin="0,16,0,0"
+                  HorizontalScrollBarVisibility="Disabled"
+                  VerticalScrollBarVisibility="Auto">
+      <StackPanel Spacing="16">
+        <Border Padding="12" BorderThickness="1" CornerRadius="2">
+          <StackPanel Spacing="10">
+            <TextBlock FontSize="16" FontWeight="SemiBold" Text="{Binding GeneralSectionTitle}" />
+            <Grid ColumnDefinitions="220,*" ColumnSpacing="12" RowSpacing="8" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+              <TextBlock Grid.Row="0" VerticalAlignment="Center" Text="{Binding ProjectStatusLabel}" />
+              <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" FontWeight="SemiBold" Text="{Binding ProjectStatusText}" />
+
+              <TextBlock Grid.Row="1" VerticalAlignment="Center" Text="{Binding FormatVersionLabel}" />
+              <NumericUpDown Grid.Row="1" Grid.Column="1" Minimum="1" Maximum="99" Value="{Binding Settings.FormatVersion}" />
+
+              <TextBlock Grid.Row="2" VerticalAlignment="Center" Text="{Binding LvglVersionLabel}" />
+              <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Settings.LvglVersion}" />
+
+              <TextBlock Grid.Row="3" VerticalAlignment="Center" Text="{Binding ModeLabel}" />
+              <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Settings.Mode}" />
+
+              <TextBlock Grid.Row="4" VerticalAlignment="Center" Text="{Binding ProjectTemplateLabel}" />
+              <ComboBox Grid.Row="4"
+                        Grid.Column="1"
+                        ItemsSource="{Binding ProjectTemplateOptions}"
+                        SelectedItem="{Binding Settings.ProjectTemplate}" />
+
+              <TextBlock Grid.Row="5" VerticalAlignment="Center" Text="{Binding ProjectDirectoryLabel}" />
+              <TextBox Grid.Row="5" Grid.Column="1" IsReadOnly="True" Text="{Binding Settings.ProjectDirectory}" />
+
+              <TextBlock Grid.Row="6" VerticalAlignment="Center" Text="{Binding StrictValidationLabel}" />
+              <CheckBox Grid.Row="6" Grid.Column="1" IsChecked="{Binding Settings.StrictValidation}" />
+
+              <TextBlock Grid.Row="7" VerticalAlignment="Center" Text="{Binding ScreenWidthLabel}" />
+              <NumericUpDown Grid.Row="7" Grid.Column="1" Minimum="1" Maximum="10000" Value="{Binding Settings.ScreenWidth}" />
+
+              <TextBlock Grid.Row="8" VerticalAlignment="Center" Text="{Binding ScreenHeightLabel}" />
+              <NumericUpDown Grid.Row="8" Grid.Column="1" Minimum="1" Maximum="10000" Value="{Binding Settings.ScreenHeight}" />
+
+            </Grid>
+          </StackPanel>
+        </Border>
+
+        <Border Padding="12" BorderThickness="1" CornerRadius="2">
+          <StackPanel Spacing="10">
+            <TextBlock FontSize="16" FontWeight="SemiBold" Text="{Binding PathsSectionTitle}" />
+            <Grid ColumnDefinitions="220,*,Auto" ColumnSpacing="12" RowSpacing="8" RowDefinitions="Auto,Auto,Auto">
+              <TextBlock Grid.Row="0" VerticalAlignment="Center" Text="{Binding OutputDirectoryLabel}" />
+              <TextBox Grid.Row="0"
+                       Grid.Column="1"
+                       IsReadOnly="True"
+                       Foreground="{Binding OutputDirectoryBrush}"
+                       Text="{Binding Settings.OutputDirectory}" />
+              <Button Grid.Row="0"
+                      Grid.Column="2"
+                      Content="{Binding SelectOutputDirectoryLabel}"
+                      Click="SelectOutputDirectoryClick" />
+
+              <TextBlock Grid.Row="1" VerticalAlignment="Center" Text="{Binding LvConfFileLabel}" />
+              <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsReadOnly="True" Text="{Binding Settings.LvConfFile}" />
+
+              <TextBlock Grid.Row="2" VerticalAlignment="Center" Text="{Binding ThemeFileLabel}" />
+              <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" IsReadOnly="True" Text="{Binding Settings.ThemeFile}" />
+            </Grid>
+          </StackPanel>
+        </Border>
+
+        <Border Padding="12" BorderThickness="1" CornerRadius="2">
+          <StackPanel Spacing="10">
+            <TextBlock FontSize="16" FontWeight="SemiBold" Text="{Binding ResourcesSectionTitle}" />
+            <Grid ColumnDefinitions="220,*" ColumnSpacing="12" RowSpacing="8" RowDefinitions="Auto,Auto,Auto">
+              <TextBlock Grid.Row="0" VerticalAlignment="Top" Margin="0,6,0,0" Text="{Binding ScreenFilesLabel}" />
+              <TextBox Grid.Row="0" Grid.Column="1" IsReadOnly="True" Text="{Binding Settings.ScreenFiles}" />
+
+              <TextBlock Grid.Row="1" VerticalAlignment="Top" Margin="0,6,0,0" Text="{Binding AssetDirectoriesLabel}" />
+              <TextBox Grid.Row="1" Grid.Column="1" IsReadOnly="True" Text="{Binding Settings.AssetDirectories}" />
+
+              <TextBlock Grid.Row="2" VerticalAlignment="Top" Margin="0,6,0,0" Text="{Binding FontDirectoriesLabel}" />
+              <TextBox Grid.Row="2" Grid.Column="1" IsReadOnly="True" Text="{Binding Settings.FontDirectories}" />
+            </Grid>
+          </StackPanel>
+        </Border>
+      </StackPanel>
+    </ScrollViewer>
+
+    <StackPanel Grid.Row="2"
+                Margin="0,16,0,0"
+                Orientation="Horizontal"
+                Spacing="8">
+      <Button Content="{Binding ExistingProjectLabel}" Click="LoadProjectClick" />
+      <Button Content="{Binding ContinueLabel}"
+              IsEnabled="{Binding CanContinue}"
+              Click="SaveProjectClick" />
+      <Border Width="1" Height="24" Background="#22000000" Margin="4,0" />
+      <StackPanel Orientation="Horizontal"
+                  HorizontalAlignment="Right"
+                  Spacing="8">
+      <Button Content="{Binding BackLabel}" Click="CloseClick" />
+      </StackPanel>
+    </StackPanel>
+  </Grid>
+</Window>

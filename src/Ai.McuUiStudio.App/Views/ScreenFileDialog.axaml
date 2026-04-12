@@ -1,0 +1,111 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Ai.McuUiStudio.App.ViewModels"
+        x:Class="Ai.McuUiStudio.App.Views.ScreenFileDialog"
+        mc:Ignorable="d"
+        Width="980"
+        Height="620"
+        MinWidth="760"
+        MinHeight="480"
+        WindowStartupLocation="CenterOwner"
+        Title="{Binding Title}">
+  <Grid RowDefinitions="Auto,*,Auto"
+        ColumnDefinitions="2*,8,3*"
+        Margin="16">
+    <TextBlock Grid.Row="0"
+               Grid.ColumnSpan="3"
+               Margin="0,0,0,12"
+               Text="{Binding CurrentDirectoryPath}"
+               FontWeight="SemiBold"
+               TextWrapping="Wrap" />
+
+    <Border Grid.Row="1"
+            Grid.Column="0"
+            BorderBrush="#22000000"
+            BorderThickness="1">
+      <TreeView x:Name="DirectoryTreeView"
+                ItemsSource="{Binding RootNodes}"
+                SelectedItem="{Binding SelectedDirectory}">
+        <TreeView.Styles>
+          <Style Selector="TreeViewItem">
+            <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+          </Style>
+        </TreeView.Styles>
+        <TreeView.ItemTemplate>
+          <TreeDataTemplate ItemsSource="{Binding Children}">
+            <TextBlock Margin="6,4"
+                       Text="{Binding Name}" />
+          </TreeDataTemplate>
+        </TreeView.ItemTemplate>
+      </TreeView>
+    </Border>
+
+    <GridSplitter Grid.Row="1"
+                  Grid.Column="1"
+                  Width="8"
+                  Background="Transparent" />
+
+    <Border Grid.Row="1"
+            Grid.Column="2"
+            BorderBrush="#22000000"
+            BorderThickness="1">
+      <ListBox ItemsSource="{Binding FileEntries}"
+               SelectedItem="{Binding SelectedFile}">
+        <ListBox.ItemTemplate>
+          <DataTemplate x:DataType="vm:FileEntryViewModel">
+            <Grid Margin="8,6"
+                  ColumnDefinitions="*,Auto"
+                  ColumnSpacing="12">
+              <TextBlock Text="{Binding Name}" />
+              <TextBlock Grid.Column="1"
+                         Text="{Binding SizeText}"
+                         Opacity="0.65" />
+            </Grid>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </Border>
+
+    <StackPanel Grid.Row="2"
+                Grid.ColumnSpan="3"
+                Margin="0,12,0,0"
+                Spacing="8">
+      <TextBlock Grid.Row="0"
+                 Foreground="#A85A20"
+                 Text="{Binding ErrorText}"
+                 TextWrapping="Wrap" />
+
+      <Grid ColumnDefinitions="*,Auto,Auto"
+            ColumnSpacing="8"
+            IsVisible="{Binding IsCreateMode}">
+        <TextBox Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="{Binding NewFileName}"
+                 PlaceholderText="{Binding NewFilePlaceholder}" />
+        <Button Grid.Column="1"
+                VerticalAlignment="Center"
+                Content="{Binding ConfirmLabel}"
+                Click="ConfirmClick"
+                IsEnabled="{Binding CanCreateFromInput}" />
+        <Button Grid.Column="2"
+                VerticalAlignment="Center"
+                Content="{Binding CancelLabel}"
+                Click="CancelClick" />
+      </Grid>
+
+      <StackPanel Orientation="Horizontal"
+                  HorizontalAlignment="Right"
+                  Spacing="8"
+                  IsVisible="{Binding IsOpenMode}">
+        <Button VerticalAlignment="Center"
+                Content="{Binding ConfirmLabel}"
+                Click="ConfirmClick"
+                IsEnabled="{Binding CanOpenFile}" />
+        <Button VerticalAlignment="Center"
+                Content="{Binding CancelLabel}"
+                Click="CancelClick" />
+      </StackPanel>
+    </StackPanel>
+  </Grid>
+</Window>

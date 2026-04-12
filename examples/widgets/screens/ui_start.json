@@ -1,0 +1,292 @@
+{
+  "formatVersion": 1,
+  "root": {
+    "type": "screen",
+    "attributes": {
+      "height": "800",
+      "name": "widgets",
+      "useUpdate": "false",
+      "width": "1280"
+    },
+    "events": [],
+    "children": [
+      {
+        "type": "label",
+        "attributes": {
+          "text": "Widget\u0027s",
+          "useUpdate": "false",
+          "width": "100",
+          "x": "32",
+          "y": "24"
+        },
+        "events": [],
+        "children": []
+      },
+      {
+        "type": "button",
+        "attributes": {
+          "height": "30",
+          "useUpdate": "false",
+          "width": "100",
+          "x": "30",
+          "y": "80"
+        },
+        "events": [],
+        "children": [
+          {
+            "type": "label",
+            "attributes": {
+              "align": "center",
+              "text": "Button",
+              "useUpdate": "false"
+            },
+            "events": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "type": "slider",
+        "attributes": {
+          "height": "30",
+          "maxValue": "100",
+          "minValue": "0",
+          "startValue": "0",
+          "useUpdate": "false",
+          "value": "0",
+          "width": "200",
+          "x": "52",
+          "y": "130"
+        },
+        "events": [],
+        "children": [
+          {
+            "type": "label",
+            "attributes": {
+              "align": "center",
+              "text": "Slider",
+              "useUpdate": "false"
+            },
+            "events": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "type": "bar",
+        "attributes": {
+          "height": "30",
+          "maxValue": "100",
+          "minValue": "0",
+          "startValue": "30",
+          "useUpdate": "false",
+          "width": "220",
+          "x": "30",
+          "y": "180"
+        },
+        "events": [],
+        "children": [
+          {
+            "type": "label",
+            "attributes": {
+              "align": "center",
+              "text": "30%",
+              "useUpdate": "false"
+            },
+            "events": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "attributes": {
+          "text": "mit Validierung",
+          "useUpdate": "false",
+          "x": "30",
+          "y": "230"
+        },
+        "events": [],
+        "children": []
+      },
+      {
+        "type": "led",
+        "attributes": {
+          "brightness": "70",
+          "clickable": "true",
+          "color": "0xff0000",
+          "height": "30",
+          "hidden": "false",
+          "useUpdate": "false",
+          "width": "30",
+          "x": "30",
+          "y": "280"
+        },
+        "events": [],
+        "children": []
+      },
+      {
+        "type": "label",
+        "attributes": {
+          "text": "LED",
+          "useUpdate": "false",
+          "x": "70",
+          "y": "287"
+        },
+        "events": [],
+        "children": []
+      },
+      {
+        "type": "switch",
+        "attributes": {
+          "height": "30",
+          "useUpdate": "false",
+          "width": "70",
+          "x": "30",
+          "y": "320"
+        },
+        "events": [],
+        "children": []
+      },
+      {
+        "type": "label",
+        "attributes": {
+          "longMode": "scroll_circular",
+          "text": "Motorstatus:",
+          "useUpdate": "false",
+          "width": "80",
+          "x": "320",
+          "y": "86"
+        },
+        "events": [],
+        "children": []
+      },
+      {
+        "type": "arc",
+        "attributes": {
+          "height": "100",
+          "useUpdate": "false",
+          "x": "320",
+          "y": "130"
+        },
+        "events": [],
+        "children": [
+          {
+            "type": "label",
+            "attributes": {
+              "text": "ARC",
+              "useUpdate": "false",
+              "x": "32",
+              "y": "45"
+            },
+            "events": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "type": "roller",
+        "attributes": {
+          "useUpdate": "false",
+          "x": "320",
+          "y": "230"
+        },
+        "events": [],
+        "children": [
+          {
+            "type": "label",
+            "attributes": {
+              "text": "Roller",
+              "useUpdate": "false"
+            },
+            "events": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "type": "spinbox",
+        "attributes": {
+          "useUpdate": "false",
+          "x": "500",
+          "y": "80"
+        },
+        "events": [],
+        "children": []
+      },
+      {
+        "type": "spinner",
+        "attributes": {
+          "height": "90",
+          "useUpdate": "false",
+          "x": "500",
+          "y": "130"
+        },
+        "events": [],
+        "children": [
+          {
+            "type": "label",
+            "attributes": {
+              "text": "Spinner",
+              "useUpdate": "false",
+              "x": "16",
+              "y": "35"
+            },
+            "events": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "type": "textArea",
+        "attributes": {
+          "height": "120",
+          "text": "Hello World ich bin eine Textarea",
+          "useUpdate": "false",
+          "width": "200",
+          "x": "500",
+          "y": "230"
+        },
+        "events": [],
+        "children": []
+      },
+      {
+        "type": "line",
+        "attributes": {
+          "clickable": "false",
+          "hidden": "false",
+          "points": "(30,500)(1220,500)",
+          "useUpdate": "false",
+          "x": "30",
+          "y": "370",
+          "yInvert": "false"
+        },
+        "events": [],
+        "children": []
+      },
+      {
+        "type": "arcLabel",
+        "attributes": {
+          "height": "100",
+          "radius": "40",
+          "text": "Hello World",
+          "useUpdate": "false",
+          "width": "100",
+          "y": "500"
+        },
+        "events": [],
+        "children": []
+      },
+      {
+        "type": "scale",
+        "attributes": {
+          "useUpdate": "false",
+          "x": "160",
+          "y": "500"
+        },
+        "events": [],
+        "children": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,1036 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Ai.McuUiStudio.App.ViewModels"
+        x:Class="Ai.McuUiStudio.App.Views.MainWindow"
+        mc:Ignorable="d"
+        Width="1320"
+        Height="820"
+        Title="{Binding WindowTitle}">
+  <Window.Resources>
+    <SolidColorBrush x:Key="UiAccentBrush" Color="#4CBADF" />
+    <SolidColorBrush x:Key="UiSelectionBrush" Color="#62CCED" />
+    <SolidColorBrush x:Key="UiAccentMutedBrush" Color="#4062CCED" />
+    <SolidColorBrush x:Key="UiAccentBorderBrush" Color="#6662CCED" />
+    <SolidColorBrush x:Key="UiOrangeBrush" Color="#BE4D25" />
+    <StreamGeometry x:Key="FolderManagedIconGeometry">M17 22l-.3-1.5q-.3-.125-.562-.262T15.6 19.9l-1.45.45l-1-1.7l1.15-1q-.05-.3-.05-.65t.05-.65l-1.15-1l1-1.7l1.45.45q.275-.2.538-.337t.562-.263L17 12h2l.3 1.5q.3.125.563.263t.537.337l1.45-.45l1 1.7l-1.15 1q.05.3.05.65t-.05.65l1.15 1l-1 1.7l-1.45-.45q-.275.2-.537.338t-.563.262L19 22zm1-3q.825 0 1.413-.587T20 17t-.587-1.412T18 15t-1.412.588T16 17t.588 1.413T18 19M4 20q-.825 0-1.412-.587T2 18V6q0-.825.588-1.412T4 4h6l2 2h8q.825 0 1.413.588T22 8v3.275q-.875-.625-1.9-.95T17.975 10q-2.95 0-4.962 2.063T11 16.975q0 .8.175 1.55T11.7 20z</StreamGeometry>
+    <StreamGeometry x:Key="DoorOpenIconGeometry">M440-440q17 0 28.5-11.5T480-480q0-17-11.5-28.5T440-520q-17 0-28.5 11.5T400-480q0 17 11.5 28.5T440-440ZM280-120v-80l240-40v-445q0-15-9-27t-23-14l-208-34v-80l220 36q44 8 72 41t28 77v512l-320 54Zm-160 0v-80h80v-560q0-34 23.5-57t56.5-23h400q34 0 57 23t23 57v560h80v80H120Zm160-80h400v-560H280v560Z</StreamGeometry>
+    <StreamGeometry x:Key="PaletteIconGeometry">M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.49 10 10c0 1.11-.89 2-2 2h-2a2 2 0 0 0-2 2v2a2 2 0 0 1-2 2h-2zM7 12a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3zm3-4a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3zm4 4a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3zm3 0a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3z</StreamGeometry>
+    <StreamGeometry x:Key="TuneIconGeometry">M3 17v2h6v-2H3zm0-12v2h10V5H3zm10 14v-2h8v2h-8zm-4-6v-2H3v2h6zm2 0h10v-2H11v2z</StreamGeometry>
+    <StreamGeometry x:Key="WandStarsIconGeometry">m176-120-56-56 301-302-181-45 198-123-17-234 179 151 216-88-87 217 151 178-234-16-124 198-45-181-301 301Zm24-520-80-80 80-80 80 80-80 80Zm355 197 48-79 93 7-60-71 35-86-86 35-71-59 7 92-79 49 90 22 23 90Zm165 323-80-80 80-80 80 80-80 80ZM569-570Z</StreamGeometry>
+    <StreamGeometry x:Key="NoteAddIconGeometry">M440-240h80v-120h120v-80H520v-120h-80v120H320v80h120v120ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z</StreamGeometry>
+    <StreamGeometry x:Key="FolderOpenIconGeometry">M240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v240h-80v-200H520v-200H240v640h360v80H240Zm638 15L760-183v89h-80v-226h226v80h-90l118 118-56 57Zm-638-95v-640 640Z</StreamGeometry>
+    <StreamGeometry x:Key="SaveIconGeometry">m720-120 160-160-56-56-64 64v-167h-80v167l-64-64-56 56 160 160ZM560 0v-80h320V0H560ZM240-160q-33 0-56.5-23.5T160-240v-560q0-33 23.5-56.5T240-880h280l240 240v121h-80v-81H480v-200H240v560h240v80H240Zm0-80v-560 560Z</StreamGeometry>
+    <StreamGeometry x:Key="AddBoxIconGeometry">M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 10h-5v5h-2v-5H6v-2h5V6h2v5h5v2z</StreamGeometry>
+    <StreamGeometry x:Key="ContentCopyIconGeometry">M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z</StreamGeometry>
+    <StreamGeometry x:Key="DeleteIconGeometry">M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm3.46-7.12l1.41-1.41L12 11.59l1.12-1.12l1.41 1.41L13.41 13l1.12 1.12l-1.41 1.41L12 14.41l-1.12 1.12l-1.41-1.41L10.59 13l-1.13-1.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z</StreamGeometry>
+    <StreamGeometry x:Key="ArrowUpwardIconGeometry">M4 12l1.41 1.41L11 7.83V20h2V7.83l5.59 5.58L20 12l-8-8l-8 8z</StreamGeometry>
+    <StreamGeometry x:Key="ArrowDownwardIconGeometry">M4 12l1.41-1.41L11 16.17V4h2v12.17l5.59-5.58L20 12l-8 8l-8-8z</StreamGeometry>
+    <StreamGeometry x:Key="MoneyIconGeometry">M600-320h120q17 0 28.5-11.5T760-360v-240q0-17-11.5-28.5T720-640H600q-17 0-28.5 11.5T560-600v240q0 17 11.5 28.5T600-320Zm40-80v-160h40v160h-40Zm-280 80h120q17 0 28.5-11.5T520-360v-240q0-17-11.5-28.5T480-640H360q-17 0-28.5 11.5T320-600v240q0 17 11.5 28.5T360-320Zm40-80v-160h40v160h-40Zm-200 80h80v-320h-80v320ZM80-160v-640h800v640H80Zm80-560v480-480Zm0 480h640v-480H160v480Z</StreamGeometry>
+    <StreamGeometry x:Key="PlayArrowIconGeometry">M8 5v14l11-7z</StreamGeometry>
+  </Window.Resources>
+  <Window.Styles>
+    <Style Selector="Button.toolbar-icon">
+      <Setter Property="Width" Value="38" />
+      <Setter Property="Height" Value="32" />
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderBrush" Value="Transparent" />
+      <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    <Style Selector="Button.toolbar-icon:pointerover /template/ ContentPresenter">
+      <Setter Property="Background" Value="Transparent" />
+    </Style>
+    <Style Selector="Button.toolbar-icon:pressed /template/ ContentPresenter">
+      <Setter Property="Background" Value="Transparent" />
+    </Style>
+    <Style Selector="Button.toolbar-icon Path">
+      <Setter Property="RenderTransformOrigin" Value="50%,50%" />
+    </Style>
+    <Style Selector="Button.toolbar-icon:pressed Path">
+      <Setter Property="RenderTransform">
+        <ScaleTransform ScaleX="0.88" ScaleY="0.88" />
+      </Setter>
+    </Style>
+    <Style Selector="CheckBox:checked /template/ Border#NormalRectangle">
+      <Setter Property="Background" Value="{StaticResource UiSelectionBrush}" />
+      <Setter Property="BorderBrush" Value="{StaticResource UiSelectionBrush}" />
+    </Style>
+    <Style Selector="CheckBox:checked:pointerover /template/ Border#NormalRectangle">
+      <Setter Property="Background" Value="{StaticResource UiSelectionBrush}" />
+      <Setter Property="BorderBrush" Value="{StaticResource UiSelectionBrush}" />
+    </Style>
+    <Style Selector="CheckBox:checked:pressed /template/ Border#NormalRectangle">
+      <Setter Property="Background" Value="{StaticResource UiSelectionBrush}" />
+      <Setter Property="BorderBrush" Value="{StaticResource UiSelectionBrush}" />
+    </Style>
+    <Style Selector="CheckBox:checked /template/ PathIcon#CheckGlyph">
+      <Setter Property="Foreground" Value="White" />
+    </Style>
+    <Style Selector="TabControl.custom-line">
+      <Style.Resources>
+        <SolidColorBrush x:Key="TabItemHeaderSelectedPipeFill" Color="#BE4D25" />
+        <SolidColorBrush x:Key="TabItemHeaderSelectedPipePointerOverFill" Color="#D76E49" />
+      </Style.Resources>
+    </Style>
+  </Window.Styles>
+  <Grid x:Name="RootLayoutGrid"
+        ColumnDefinitions="*,16,*"
+        Margin="12">
+    <Border Grid.Column="0"
+            BorderBrush="Transparent"
+            BorderThickness="0"
+            CornerRadius="2"
+            ClipToBounds="True">
+    <Grid x:Name="MainEditorLayout"
+          RowDefinitions="Auto,*,Auto"
+          ClipToBounds="True">
+    <Border Grid.Row="0"
+            Padding="12,8"
+            CornerRadius="2"
+            BorderThickness="1"
+            Background="#11000000">
+      <Grid ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*,Auto,Auto,Auto"
+            ColumnSpacing="10">
+        <Button Grid.Column="0"
+                Classes="toolbar-icon"
+                ToolTip.Tip="{Binding ToolbarExitTooltip}"
+                Click="ExitApplicationClick">
+          <Path Width="38"
+                Height="32"
+                Stretch="Uniform"
+                Data="{StaticResource DoorOpenIconGeometry}"
+                Fill="#BE4D25" />
+        </Button>
+
+        <Border Grid.Column="1"
+                Width="1"
+                Margin="0,2"
+                Background="#22000000" />
+
+        <StackPanel Grid.Column="2"
+                    Orientation="Horizontal"
+                    Spacing="8">
+          <Button Classes="toolbar-icon"
+                  ToolTip.Tip="{Binding ToolbarProjectTooltip}"
+                  Click="OpenProjectDialogClick">
+            <Path Width="38"
+                  Height="32"
+                  Stretch="Uniform"
+                  Data="{StaticResource FolderManagedIconGeometry}"
+                  Fill="#BE4D25" />
+          </Button>
+          <Button Classes="toolbar-icon"
+                  ToolTip.Tip="{Binding ToolbarThemeTooltip}"
+                  Click="OpenThemeDialogClick">
+            <Path Width="38"
+                  Height="32"
+                  Stretch="Uniform"
+                  Data="{StaticResource PaletteIconGeometry}"
+                  Fill="#BE4D25" />
+          </Button>
+          <Button Classes="toolbar-icon"
+                  ToolTip.Tip="{Binding ToolbarLvConfTooltip}"
+                  Click="OpenLvConfDialogClick">
+            <Path Width="38"
+                  Height="32"
+                  Stretch="Uniform"
+                  Data="{StaticResource TuneIconGeometry}"
+                  Fill="#BE4D25" />
+          </Button>
+          <Button Classes="toolbar-icon"
+                  ToolTip.Tip="{Binding ToolbarGenerateCodeTooltip}"
+                  Click="GenerateMcuCodeClick"
+                  IsEnabled="{Binding IsEditorReady}">
+            <Path Width="38"
+                  Height="32"
+                  Stretch="Uniform"
+                  Data="{StaticResource WandStarsIconGeometry}"
+                  Fill="#BE4D25" />
+          </Button>
+        </StackPanel>
+
+        <Border Grid.Column="3"
+                Width="1"
+                Margin="0,2"
+                Background="#22000000" />
+
+        <StackPanel Grid.Column="4"
+                    Orientation="Horizontal"
+                    Spacing="8"
+                    IsEnabled="{Binding IsEditorReady}">
+          <Button Classes="toolbar-icon"
+                  ToolTip.Tip="{Binding ToolbarNewTooltip}"
+                  Click="NewProjectClick">
+            <Path Width="38"
+                  Height="32"
+                  Stretch="Uniform"
+                  Data="{StaticResource NoteAddIconGeometry}"
+                  Fill="#96BE25" />
+          </Button>
+          <Button Classes="toolbar-icon"
+                  ToolTip.Tip="{Binding ToolbarOpenTooltip}"
+                  Click="OpenDocumentClick">
+            <Path Width="38"
+                  Height="32"
+                  Stretch="Uniform"
+                  Data="{StaticResource FolderOpenIconGeometry}"
+                  Fill="#96BE25" />
+          </Button>
+          <Button Classes="toolbar-icon"
+                  ToolTip.Tip="{Binding ToolbarSaveTooltip}"
+                  Click="SaveDocumentClick">
+            <Path Width="38"
+                  Height="32"
+                  Stretch="Uniform"
+                  Data="{StaticResource SaveIconGeometry}"
+                  Fill="#96BE25" />
+          </Button>
+        </StackPanel>
+
+        <Border Grid.Column="5"
+                Width="1"
+                Margin="0,2"
+                Background="#22000000" />
+
+        <StackPanel Grid.Column="6"
+                    Orientation="Horizontal"
+                    Spacing="8"
+                    IsEnabled="{Binding IsEditorReady}">
+          <Button Classes="toolbar-icon"
+                  ToolTip.Tip="{Binding ToolbarAddElementTooltip}"
+                  Click="AddElementClick">
+            <Path Width="38"
+                  Height="32"
+                  Stretch="Uniform"
+                  Data="{StaticResource AddBoxIconGeometry}"
+                  Fill="{StaticResource UiAccentBrush}" />
+          </Button>
+          <Button Classes="toolbar-icon"
+                  ToolTip.Tip="{Binding ToolbarDuplicateTooltip}"
+                  Click="DuplicateElementClick">
+            <Path Width="38"
+                  Height="32"
+                  Stretch="Uniform"
+                  Data="{StaticResource ContentCopyIconGeometry}"
+                  Fill="{StaticResource UiAccentBrush}" />
+          </Button>
+          <Button Classes="toolbar-icon"
+                  ToolTip.Tip="{Binding ToolbarDeleteTooltip}"
+                  Click="DeleteElementClick">
+            <Path Width="38"
+                  Height="32"
+                  Stretch="Uniform"
+                  Data="{StaticResource DeleteIconGeometry}"
+                  Fill="{StaticResource UiAccentBrush}" />
+          </Button>
+          <Button Classes="toolbar-icon"
+                  ToolTip.Tip="{Binding ToolbarMoveUpTooltip}"
+                  Click="MoveUpClick">
+            <Path Width="38"
+                  Height="32"
+                  Stretch="Uniform"
+                  Data="{StaticResource ArrowUpwardIconGeometry}"
+                  Fill="{StaticResource UiAccentBrush}" />
+          </Button>
+          <Button Classes="toolbar-icon"
+                  ToolTip.Tip="{Binding ToolbarMoveDownTooltip}"
+                  Click="MoveDownClick">
+            <Path Width="38"
+                  Height="32"
+                  Stretch="Uniform"
+                  Data="{StaticResource ArrowDownwardIconGeometry}"
+                  Fill="{StaticResource UiAccentBrush}" />
+          </Button>
+        </StackPanel>
+
+        <StackPanel Grid.Column="9"
+                    Orientation="Horizontal"
+                    Spacing="8"
+                    HorizontalAlignment="Right">
+          <TextBlock VerticalAlignment="Center"
+                     Opacity="0.7"
+                     Text="{Binding ToolbarLanguageLabel}" />
+          <ComboBox MinWidth="150"
+                    ItemsSource="{Binding AvailableLanguages}"
+                    SelectedItem="{Binding SelectedLanguage}" />
+        </StackPanel>
+
+        <Border Grid.Column="10"
+                Width="1"
+                Margin="0,2"
+                Background="#22000000" />
+
+        <Button Grid.Column="11"
+                Classes="toolbar-icon"
+                HorizontalAlignment="Right"
+                ToolTip.Tip="{Binding ToolbarPreviewResetSizeTooltip}"
+                Click="PreviewResetSizeClick">
+          <Path Width="38"
+                Height="32"
+                Stretch="Uniform"
+                Data="{StaticResource MoneyIconGeometry}"
+                Fill="{StaticResource UiAccentBrush}" />
+        </Button>
+      </Grid>
+    </Border>
+
+    <Grid x:Name="WorkspaceGrid"
+          Grid.Row="1"
+          ColumnDefinitions="320,16,420,16,*"
+          Margin="0,16,0,0"
+          ClipToBounds="True"
+          IsEnabled="{Binding IsEditorReady}">
+    <Border Grid.Column="0" Padding="0" CornerRadius="2" BorderThickness="1">
+      <Grid RowDefinitions="Auto,Auto,*,Auto,Auto,Auto">
+        <Border Background="#11000000" Padding="12,0" MinHeight="44" BorderThickness="0,0,0,1">
+          <Grid ColumnDefinitions="*,Auto">
+            <TextBlock FontSize="17"
+                       FontWeight="SemiBold"
+                       VerticalAlignment="Center"
+                       Text="{Binding ToolboxTitle}" />
+            <Button Grid.Column="1"
+                    Width="32"
+                    Height="22"
+                    Padding="0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    FontSize="12"
+                    FontWeight="SemiBold"
+                    Content="{Binding ToolboxSortGlyph}"
+                    ToolTip.Tip="{Binding ToolboxSortHint}"
+                    Click="ToggleToolboxSortModeClick" />
+          </Grid>
+        </Border>
+        <Border Grid.Row="1"
+                Grid.RowSpan="5"
+                Padding="0,12,0,14"
+                BorderBrush="Transparent"
+                BorderThickness="0">
+          <Border Margin="0,0,1,0"
+                  BorderBrush="Transparent"
+                  BorderThickness="0">
+            <Grid RowDefinitions="Auto,*">
+              <TextBox Margin="0,10,0,0"
+                       HorizontalAlignment="Stretch"
+                       PlaceholderText="Suchen..."
+                       Text="{Binding ToolboxSearchText, UpdateSourceTrigger=PropertyChanged}" />
+              <ScrollViewer Grid.Row="1"
+                            Margin="0,12,0,12"
+                            Padding="0,0,2,0"
+                            HorizontalScrollBarVisibility="Disabled"
+                            VerticalScrollBarVisibility="Auto">
+                <ListBox x:Name="ToolboxListBox"
+                         Margin="0,0,12,0"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                         ItemsSource="{Binding ToolboxItems}"
+                         SelectedItem="{Binding SelectedToolboxItem}"
+                         SelectionChanged="ToolboxSelectionChanged">
+                  <ListBox.ItemTemplate>
+                    <DataTemplate x:DataType="vm:ToolboxItemViewModel">
+                      <Grid Margin="0">
+                        <Border Background="{StaticResource UiAccentMutedBrush}"
+                                Padding="8,4"
+                                IsVisible="{Binding IsHeader}">
+                          <Grid ColumnDefinitions="22,*" ColumnSpacing="10">
+                            <Button Grid.Column="0"
+                                    Width="20"
+                                    Height="20"
+                                    Padding="0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    FontSize="13"
+                                    FontWeight="Bold"
+                                    Content="{Binding ToggleGlyph}"
+                                    Click="ToggleToolboxGroupClick" />
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding Label}"
+                                       Foreground="{Binding LabelBrush}"
+                                       FontWeight="SemiBold"
+                                       FontSize="12"
+                                       VerticalAlignment="Center"
+                                       Opacity="0.9" />
+                          </Grid>
+                        </Border>
+                        <Border IsVisible="{Binding ShowAsEntry}"
+                                Padding="8,4"
+                                Background="Transparent"
+                                AttachedToVisualTree="BindAvailabilityTooltip"
+                                PointerPressed="ToolboxEntryPointerPressed"
+                                PointerReleased="ToolboxEntryPointerReleased"
+                                PointerMoved="ToolboxEntryPointerMoved">
+                          <StackPanel Spacing="2"
+                                      Opacity="{Binding EntryOpacity}">
+                            <TextBlock Text="{Binding Label}"
+                                       Foreground="{Binding LabelBrush}" />
+                            <TextBlock IsVisible="{Binding ShowUnsupportedHint}"
+                                       FontSize="10"
+                                       Opacity="0.7"
+                                       Text="{Binding DataContext.ToolboxUnsupportedLabel, RelativeSource={RelativeSource AncestorType=Window}}" />
+                          </StackPanel>
+                        </Border>
+                          </Grid>
+                        </DataTemplate>
+                  </ListBox.ItemTemplate>
+                </ListBox>
+              </ScrollViewer>
+            </Grid>
+          </Border>
+        </Border>
+      </Grid>
+    </Border>
+
+    <GridSplitter Grid.Column="1"
+                  Width="6"
+                  HorizontalAlignment="Center"
+                  ResizeDirection="Columns"
+                  Background="#18000000" />
+
+    <Border Grid.Column="2" Padding="0" CornerRadius="2" BorderThickness="1">
+      <Grid RowDefinitions="Auto,*">
+        <Border Background="#11000000" Padding="12,0" MinHeight="44" BorderThickness="0,0,0,1">
+          <Grid ColumnDefinitions="*,Auto">
+            <TextBlock FontSize="17"
+                       FontWeight="SemiBold"
+                       VerticalAlignment="Center"
+                       Text="{Binding StructureTitle}" />
+            <Button Grid.Column="1"
+                    Width="22"
+                    Height="22"
+                    Padding="0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    FontSize="13"
+                    FontWeight="SemiBold"
+                    Content="{Binding TreeExpandCollapseGlyph}"
+                    ToolTip.Tip="{Binding TreeExpandCollapseHint}"
+                    Click="ToggleAllTreeNodesClick" />
+          </Grid>
+        </Border>
+        <Border Grid.Row="1"
+                Padding="0,12,0,14"
+                BorderBrush="Transparent"
+                BorderThickness="0">
+          <Border Margin="0,0,1,0"
+                  BorderBrush="Transparent"
+                  BorderThickness="0">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                          VerticalScrollBarVisibility="Auto"
+                          Margin="0">
+              <TreeView Margin="0"
+                        DragDrop.AllowDrop="True"
+                        DragDrop.DragOver="StructureTreeDragOver"
+                        DragDrop.Drop="StructureTreeDrop"
+                        ItemsSource="{Binding RootNodes}"
+                        SelectedItem="{Binding SelectedNode}">
+                <TreeView.Styles>
+                  <Style Selector="TreeViewItem">
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                  </Style>
+                </TreeView.Styles>
+                <TreeView.ItemTemplate>
+                  <TreeDataTemplate ItemsSource="{Binding Children}">
+                    <Border Padding="4,2"
+                            Background="Transparent"
+                            AttachedToVisualTree="BindAvailabilityTooltip"
+                            PointerPressed="StructureEntryPointerPressed"
+                            PointerReleased="StructureEntryPointerReleased"
+                            PointerMoved="StructureEntryPointerMoved"
+                            DragDrop.AllowDrop="True"
+                            DragDrop.DragOver="StructureNodeDragOver"
+                            DragDrop.DragLeave="StructureNodeDragLeave"
+                            DragDrop.Drop="StructureNodeDrop">
+                      <StackPanel Spacing="1"
+                                  Opacity="{Binding EntryOpacity}">
+                        <TextBlock Text="{Binding Header}" />
+                        <TextBlock IsVisible="{Binding ShowUnsupportedHint}"
+                                   FontSize="10"
+                                   Opacity="0.7"
+                                   Text="{Binding DataContext.ToolboxUnsupportedLabel, RelativeSource={RelativeSource AncestorType=Window}}" />
+                      </StackPanel>
+                    </Border>
+                  </TreeDataTemplate>
+                </TreeView.ItemTemplate>
+              </TreeView>
+            </ScrollViewer>
+          </Border>
+        </Border>
+      </Grid>
+    </Border>
+
+    <GridSplitter Grid.Column="3"
+                  Width="6"
+                  HorizontalAlignment="Center"
+                  ResizeDirection="Columns"
+                  Background="#18000000" />
+
+    <Grid Grid.Column="4" RowDefinitions="460,16,*">
+      <Border Grid.Row="0" Padding="0" CornerRadius="2" BorderThickness="1">
+        <Grid RowDefinitions="Auto,*">
+        <Border Background="#11000000" Padding="12,0" MinHeight="44" BorderThickness="0,0,0,1">
+          <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+            <TextBlock FontSize="17"
+                       FontWeight="SemiBold"
+                       VerticalAlignment="Center"
+                       Text="{Binding PropertiesTitle}" />
+            <Button Grid.Column="1"
+                    Width="32"
+                    Height="22"
+                    Padding="0"
+                    HorizontalAlignment="Right"
+                      VerticalAlignment="Center"
+                      HorizontalContentAlignment="Center"
+                      VerticalContentAlignment="Center"
+                      FontSize="12"
+                      FontWeight="SemiBold"
+                      Content="{Binding PropertySortGlyph}"
+                    ToolTip.Tip="{Binding PropertySortHint}"
+                    Click="TogglePropertySortModeClick" />
+          </Grid>
+        </Border>
+          <Border Grid.Row="1"
+                  Padding="0,12,0,14"
+                  BorderBrush="Transparent"
+                  BorderThickness="0">
+            <TabControl Classes="badge-tabs custom-line"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        SelectedIndex="{Binding SelectedPropertyTabIndex}">
+              <TabControl.Styles>
+                <Style Selector="TabStrip">
+                  <Setter Property="HorizontalAlignment" Value="Left" />
+                </Style>
+                <Style Selector="TabItem">
+                  <Setter Property="MinWidth" Value="0" />
+                  <Setter Property="Padding" Value="0" />
+                  <Setter Property="Margin" Value="0,0,4,0" />
+                  <Setter Property="BorderThickness" Value="0" />
+                </Style>
+              </TabControl.Styles>
+              <TabItem>
+                <TabItem.Header>
+                  <Border Padding="10,3"
+                          Background="#18000000"
+                          CornerRadius="8">
+                    <TextBlock FontSize="12"
+                               FontWeight="SemiBold"
+                               Text="{Binding DataContext.PropertiesTabLabel, RelativeSource={RelativeSource AncestorType=Window}}" />
+                  </Border>
+                </TabItem.Header>
+                <ScrollViewer Margin="-12,10,-12,0" VerticalScrollBarVisibility="Auto">
+                  <Border Padding="0,0,16,0">
+                    <ItemsControl ItemsSource="{Binding PropertyGridItems}">
+                      <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:PropertyGridItemViewModel">
+                          <Grid>
+                            <Border Background="{StaticResource UiAccentMutedBrush}"
+                                    Margin="0,0,0,6"
+                                    MinHeight="28"
+                                    Padding="6,5"
+                                    IsVisible="{Binding IsHeader}">
+                              <Grid ColumnDefinitions="28,*" ColumnSpacing="12">
+                                <Button Grid.Column="0"
+                                        Width="22"
+                                        Height="22"
+                                        Padding="0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        HorizontalContentAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        FontSize="15"
+                                        FontWeight="Bold"
+                                        Content="{Binding ToggleGlyph}"
+                                        Click="TogglePropertyGroupClick" />
+                                <TextBlock Grid.Column="1"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding Label}"
+                                           FontWeight="SemiBold"
+                                           FontSize="13" />
+                              </Grid>
+                            </Border>
+                            <Grid ColumnDefinitions="220,*"
+                                  Margin="0,0,0,3"
+                                  MinHeight="22"
+                                  IsVisible="{Binding ShowAsEntry}">
+                              <Border BorderBrush="#22FFFFFF"
+                                      BorderThickness="0,0,1,1"
+                                      Padding="6,2"
+                                      ToolTip.Tip="{Binding Editor.Tooltip}">
+                                <StackPanel Orientation="Horizontal"
+                                            VerticalAlignment="Center"
+                                            Spacing="4">
+                                  <TextBlock Text="{Binding Editor.DisplayName}"
+                                             Foreground="{Binding Editor.NameBrush}"
+                                             FontWeight="{Binding Editor.NameFontWeight}"
+                                             VerticalAlignment="Center"
+                                             Opacity="{Binding Editor.NameOpacity}" />
+                                  <TextBlock IsVisible="{Binding Editor.ShowRequiredMarker}"
+                                             Text="*"
+                                             VerticalAlignment="Center"
+                                             FontWeight="SemiBold"
+                                             Foreground="{StaticResource UiAccentBrush}" />
+                                </StackPanel>
+                              </Border>
+                              <Border Grid.Column="1" BorderBrush="#22FFFFFF" BorderThickness="0,0,0,1" Padding="6,2">
+                                <Grid>
+                                  <TextBox IsVisible="{Binding Editor.ShowTextEditor}"
+                                           GotFocus="PropertyEditorGotFocus"
+                                           LostFocus="PropertyEditorLostFocus"
+                                           Text="{Binding Editor.EditValue, UpdateSourceTrigger=PropertyChanged}" />
+                                  <ComboBox IsVisible="{Binding Editor.ShowComboEditor}"
+                                            ItemsSource="{Binding Editor.AllowedValueOptions}"
+                                            SelectedItem="{Binding Editor.SelectedAllowedValue}">
+                                    <ComboBox.ItemTemplate>
+                                      <DataTemplate x:DataType="vm:AllowedValueOption">
+                                        <TextBlock Text="{Binding DisplayText}" />
+                                      </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                  </ComboBox>
+                                  <Grid IsVisible="{Binding Editor.ShowColorEditor}"
+                                        ColumnDefinitions="3*,2*"
+                                        ColumnSpacing="8">
+                                    <ComboBox Grid.Column="0"
+                                              HorizontalAlignment="Stretch"
+                                              MinWidth="0"
+                                              ItemsSource="{Binding Editor.AllowedValueOptions}"
+                                              SelectedItem="{Binding Editor.SelectedAllowedValue}">
+                                      <ComboBox.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:AllowedValueOption">
+                                          <TextBlock Text="{Binding DisplayText}" />
+                                        </DataTemplate>
+                                      </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                    <TextBox Grid.Column="1"
+                                             HorizontalAlignment="Stretch"
+                                             GotFocus="PropertyEditorGotFocus"
+                                             LostFocus="PropertyEditorLostFocus"
+                                             Text="{Binding Editor.EditValue, UpdateSourceTrigger=PropertyChanged}" />
+                                  </Grid>
+                                  <CheckBox IsVisible="{Binding Editor.ShowBooleanEditor}"
+                                            IsChecked="{Binding Editor.BoolValue}" />
+                                </Grid>
+                              </Border>
+                            </Grid>
+                          </Grid>
+
+                        </DataTemplate>
+                      </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                  </Border>
+                </ScrollViewer>
+              </TabItem>
+              <TabItem>
+                <TabItem.Header>
+                  <Border Padding="10,3"
+                          Background="#18000000"
+                          CornerRadius="8">
+                    <TextBlock FontSize="12"
+                               FontWeight="SemiBold"
+                               Text="{Binding DataContext.EventsTabLabel, RelativeSource={RelativeSource AncestorType=Window}}" />
+                  </Border>
+                </TabItem.Header>
+                <ScrollViewer Margin="-12,10,-12,0" VerticalScrollBarVisibility="Auto">
+                  <Border Padding="0,0,16,0">
+                    <ItemsControl ItemsSource="{Binding PropertyGridItems}">
+                      <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:PropertyGridItemViewModel">
+                          <Grid>
+                            <Border Background="{StaticResource UiAccentMutedBrush}"
+                                    Margin="0,0,0,6"
+                                    MinHeight="28"
+                                    Padding="6,5"
+                                    IsVisible="{Binding IsHeader}">
+                              <Grid ColumnDefinitions="28,*" ColumnSpacing="12">
+                                <Button Grid.Column="0"
+                                        Width="22"
+                                        Height="22"
+                                        Padding="0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        HorizontalContentAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        FontSize="15"
+                                        FontWeight="Bold"
+                                        Content="{Binding ToggleGlyph}"
+                                        Click="TogglePropertyGroupClick" />
+                                <TextBlock Grid.Column="1"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding Label}"
+                                           FontWeight="SemiBold"
+                                           FontSize="13" />
+                              </Grid>
+                            </Border>
+                            <Grid ColumnDefinitions="220,*"
+                                  Margin="0,0,0,3"
+                                  MinHeight="22"
+                                  IsVisible="{Binding ShowAsEntry}">
+                              <Border BorderBrush="#22FFFFFF"
+                                      BorderThickness="0,0,1,1"
+                                      Padding="6,2"
+                                      ToolTip.Tip="{Binding Editor.Tooltip}">
+                                <StackPanel Orientation="Horizontal"
+                                            VerticalAlignment="Center"
+                                            Spacing="4">
+                                  <TextBlock Text="{Binding Editor.DisplayName}"
+                                             Foreground="{Binding Editor.NameBrush}"
+                                             FontWeight="{Binding Editor.NameFontWeight}"
+                                             VerticalAlignment="Center"
+                                             Opacity="{Binding Editor.NameOpacity}" />
+                                  <TextBlock IsVisible="{Binding Editor.ShowRequiredMarker}"
+                                             Text="*"
+                                             VerticalAlignment="Center"
+                                             FontWeight="SemiBold"
+                                             Foreground="{StaticResource UiAccentBrush}" />
+                                </StackPanel>
+                              </Border>
+                              <Border Grid.Column="1" BorderBrush="#22FFFFFF" BorderThickness="0,0,0,1" Padding="6,2">
+                                <Grid>
+                                  <TextBox IsVisible="{Binding Editor.ShowTextEditor}"
+                                           GotFocus="PropertyEditorGotFocus"
+                                           LostFocus="PropertyEditorLostFocus"
+                                           Text="{Binding Editor.EditValue, UpdateSourceTrigger=PropertyChanged}" />
+                                  <ComboBox IsVisible="{Binding Editor.ShowComboEditor}"
+                                            ItemsSource="{Binding Editor.AllowedValueOptions}"
+                                            SelectedItem="{Binding Editor.SelectedAllowedValue}">
+                                    <ComboBox.ItemTemplate>
+                                      <DataTemplate x:DataType="vm:AllowedValueOption">
+                                        <TextBlock Text="{Binding DisplayText}" />
+                                      </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                  </ComboBox>
+                                  <Grid IsVisible="{Binding Editor.ShowColorEditor}"
+                                        ColumnDefinitions="3*,2*"
+                                        ColumnSpacing="8">
+                                    <ComboBox Grid.Column="0"
+                                              HorizontalAlignment="Stretch"
+                                              MinWidth="0"
+                                              ItemsSource="{Binding Editor.AllowedValueOptions}"
+                                              SelectedItem="{Binding Editor.SelectedAllowedValue}">
+                                      <ComboBox.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:AllowedValueOption">
+                                          <TextBlock Text="{Binding DisplayText}" />
+                                        </DataTemplate>
+                                      </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                    <TextBox Grid.Column="1"
+                                             HorizontalAlignment="Stretch"
+                                             GotFocus="PropertyEditorGotFocus"
+                                             LostFocus="PropertyEditorLostFocus"
+                                             Text="{Binding Editor.EditValue, UpdateSourceTrigger=PropertyChanged}" />
+                                  </Grid>
+                                  <CheckBox IsVisible="{Binding Editor.ShowBooleanEditor}"
+                                            IsChecked="{Binding Editor.BoolValue}" />
+                                </Grid>
+                              </Border>
+                            </Grid>
+                          </Grid>
+                        </DataTemplate>
+                      </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                  </Border>
+                </ScrollViewer>
+              </TabItem>
+            </TabControl>
+          </Border>
+        </Grid>
+      </Border>
+
+      <GridSplitter Grid.Row="1"
+                    Height="6"
+                    VerticalAlignment="Center"
+                    ResizeDirection="Rows"
+                    Background="#18000000" />
+
+      <Border Grid.Row="2" Padding="0" CornerRadius="2" BorderThickness="1">
+        <Grid RowDefinitions="Auto,*">
+          <Border Background="#11000000" Padding="12,0" MinHeight="44" BorderThickness="0,0,0,1">
+            <TextBlock FontSize="17"
+                       FontWeight="SemiBold"
+                       VerticalAlignment="Center"
+                       Text="{Binding DiagnosticsTitle}" />
+          </Border>
+
+          <Border Grid.Row="1"
+                  Padding="0,12,0,14"
+                  BorderBrush="Transparent"
+                  BorderThickness="0">
+            <TabControl Classes="badge-tabs custom-line"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        MinHeight="0"
+                        SelectedIndex="{Binding SelectedDiagnosticsTabIndex}">
+              <TabControl.Styles>
+                <Style Selector="TabStrip">
+                  <Setter Property="HorizontalAlignment" Value="Left" />
+                </Style>
+                <Style Selector="TabItem">
+                  <Setter Property="MinWidth" Value="0" />
+                  <Setter Property="Padding" Value="0" />
+                  <Setter Property="Margin" Value="0,0,4,0" />
+                  <Setter Property="BorderThickness" Value="0" />
+                </Style>
+              </TabControl.Styles>
+              <TabItem>
+                <TabItem.Header>
+                  <Border Margin="0,0,4,0"
+                          Padding="10,3"
+                          Background="#18000000"
+                          CornerRadius="8">
+                    <TextBlock FontSize="12"
+                               FontWeight="SemiBold"
+                               Text="{Binding DataContext.ValidationTabLabel, RelativeSource={RelativeSource AncestorType=Window}}" />
+                  </Border>
+                </TabItem.Header>
+                <Border Margin="-12,10,-12,0"
+                        HorizontalAlignment="Stretch">
+                  <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                VerticalScrollBarVisibility="Auto">
+                    <SelectableTextBlock Text="{Binding ValidationSummary}"
+                                         FontFamily="Courier New, Courier, monospace"
+                                         FontSize="16"
+                                         Foreground="#000000"
+                                         Margin="0,0,16,0"
+                                         TextWrapping="Wrap" />
+                  </ScrollViewer>
+                </Border>
+              </TabItem>
+
+              <TabItem>
+                <TabItem.Header>
+                  <Border Margin="0,0,4,0"
+                          Padding="10,3"
+                          Background="#18000000"
+                          CornerRadius="8">
+                    <TextBlock FontSize="12"
+                               FontWeight="SemiBold"
+                               Text="{Binding DataContext.TechnicalLogTabLabel, RelativeSource={RelativeSource AncestorType=Window}}" />
+                  </Border>
+                </TabItem.Header>
+                <Border Margin="-12,10,-12,0"
+                        HorizontalAlignment="Stretch">
+                  <ScrollViewer x:Name="TechnicalLogScrollViewer"
+                                HorizontalScrollBarVisibility="Auto"
+                                VerticalScrollBarVisibility="Auto">
+                    <SelectableTextBlock Text="{Binding EditorState.TechnicalLog}"
+                                         FontFamily="Courier New, Courier, monospace"
+                                         FontSize="16"
+                                         Foreground="#000000"
+                                         Margin="0,0,16,0"
+                                         TextWrapping="NoWrap">
+                      <SelectableTextBlock.ContextMenu>
+                        <ContextMenu>
+                          <MenuItem Header="{Binding DataContext.DiagnosticsClearLogLabel, RelativeSource={RelativeSource AncestorType=Window}}"
+                                    Click="ClearPreviewLogClick" />
+                        </ContextMenu>
+                      </SelectableTextBlock.ContextMenu>
+                    </SelectableTextBlock>
+                  </ScrollViewer>
+                </Border>
+              </TabItem>
+
+              <TabItem>
+                <TabItem.Header>
+                  <Border Margin="0,0,4,0"
+                          Padding="10,3"
+                          Background="#18000000"
+                          CornerRadius="8">
+                    <TextBlock FontSize="12"
+                               FontWeight="SemiBold"
+                               Text="{Binding DataContext.EventCallbacksTabLabel, RelativeSource={RelativeSource AncestorType=Window}}" />
+                  </Border>
+                </TabItem.Header>
+                <Border Margin="-12,10,-12,0"
+                        HorizontalAlignment="Stretch">
+                  <ScrollViewer x:Name="EventLogScrollViewer"
+                                HorizontalScrollBarVisibility="Auto"
+                                VerticalScrollBarVisibility="Auto">
+                    <SelectableTextBlock Text="{Binding EditorState.EventCallbackLog}"
+                                         FontFamily="Courier New, Courier, monospace"
+                                         FontSize="16"
+                                         Foreground="#000000"
+                                         Margin="0,0,16,0"
+                                         TextWrapping="NoWrap">
+                      <SelectableTextBlock.ContextMenu>
+                        <ContextMenu>
+                          <MenuItem Header="{Binding DataContext.DiagnosticsClearLogLabel, RelativeSource={RelativeSource AncestorType=Window}}"
+                                    Click="ClearPreviewLogClick" />
+                        </ContextMenu>
+                      </SelectableTextBlock.ContextMenu>
+                    </SelectableTextBlock>
+                  </ScrollViewer>
+                </Border>
+              </TabItem>
+
+              <TabItem>
+                <TabItem.Header>
+                  <Border Padding="10,3"
+                          Background="#18000000"
+                          CornerRadius="8">
+                    <TextBlock FontSize="12"
+                               FontWeight="SemiBold"
+                               Text="{Binding DataContext.JsonPreviewTabLabel, RelativeSource={RelativeSource AncestorType=Window}}" />
+                  </Border>
+                </TabItem.Header>
+                <Border Margin="-12,10,-12,0"
+                        HorizontalAlignment="Stretch">
+                  <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                VerticalScrollBarVisibility="Auto">
+                    <SelectableTextBlock Text="{Binding JsonPreview}"
+                                         FontFamily="Courier New, Courier, monospace"
+                                         FontSize="16"
+                                         Foreground="#000000"
+                                         Margin="0,0,16,0"
+                                         TextWrapping="NoWrap" />
+                  </ScrollViewer>
+                </Border>
+              </TabItem>
+            </TabControl>
+          </Border>
+        </Grid>
+      </Border>
+    </Grid>
+    </Grid>
+    <Border Grid.Row="2"
+            Margin="0,16,0,0"
+            Padding="10,6"
+            CornerRadius="2"
+            BorderThickness="1"
+            Background="#11000000">
+      <Grid ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,*"
+            ColumnSpacing="10">
+        <Border Padding="8,2"
+                Background="#18000000"
+                CornerRadius="8"
+                BorderThickness="1">
+          <TextBlock FontSize="12"
+                     Text="{Binding StatusSimulatorText}" />
+        </Border>
+
+        <Border Grid.Column="1"
+                Padding="8,2"
+                Background="#18000000"
+                CornerRadius="8"
+                BorderThickness="1">
+          <TextBlock FontSize="12"
+                     Text="{Binding StatusChangesText}" />
+        </Border>
+
+        <Border Grid.Column="2"
+                Padding="8,2"
+                Background="#18000000"
+                CornerRadius="8"
+                BorderThickness="1">
+          <TextBlock FontSize="12"
+                     Text="{Binding StatusLvglText}" />
+        </Border>
+
+        <Border Grid.Column="3"
+                Padding="8,2"
+                Background="#18000000"
+                CornerRadius="8"
+                BorderThickness="1">
+          <TextBlock FontSize="12"
+                     Text="{Binding StatusModeText}" />
+        </Border>
+
+        <Border Grid.Column="4"
+                Padding="8,2"
+                Background="#18000000"
+                CornerRadius="8"
+                BorderThickness="1">
+          <TextBlock FontSize="12"
+                     Text="{Binding StatusStrictText}" />
+        </Border>
+
+        <TextBlock Grid.Column="5"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   FontSize="11"
+                   Opacity="0.7"
+                   Text="{Binding StatusBackendText}" />
+      </Grid>
+    </Border>
+    </Grid>
+    </Border>
+    <GridSplitter x:Name="DocumentationPanelSplitter"
+                  Grid.Column="1"
+                  Width="2"
+                  HorizontalAlignment="Center"
+                  ResizeDirection="Columns"
+                  ResizeBehavior="PreviousAndNext"
+                  Background="#18000000" />
+
+    <Button x:Name="DocumentationPanelHandle"
+            Grid.Column="1"
+            Width="16"
+            Height="48"
+            Padding="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            FontSize="12"
+            FontWeight="SemiBold"
+            Content="{Binding DocumentationPanelToggleGlyph}"
+            ToolTip.Tip="{Binding DocumentationPanelToggleTooltip}"
+            Click="ToggleDocumentationPanelClick" />
+
+    <Border x:Name="DocumentationPanel"
+            Grid.Column="2"
+            Margin="0"
+            Padding="0"
+            MinWidth="320"
+            CornerRadius="2"
+            BorderBrush="Transparent"
+            BorderThickness="0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+      <Grid RowDefinitions="Auto,*"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+        <Border Background="#11000000" Padding="12,8" MinHeight="48" BorderThickness="0,0,0,1">
+          <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+            <TextBlock FontSize="17"
+                       FontWeight="SemiBold"
+                       VerticalAlignment="Center"
+                       Text="{Binding DocumentationTitle}" />
+            <Button Grid.Column="1"
+                    Width="32"
+                    Height="22"
+                    Padding="0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    FontSize="12"
+                    FontWeight="SemiBold"
+                    Content="{Binding DocumentationPanelToggleGlyph}"
+                    ToolTip.Tip="{Binding DocumentationPanelToggleTooltip}"
+                    Click="ToggleDocumentationPanelClick" />
+          </Grid>
+        </Border>
+        <Border Grid.Row="1"
+                Padding="0"
+                BorderBrush="Transparent"
+                BorderThickness="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch">
+          <ContentControl x:Name="DocumentationContentHost"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch" />
+        </Border>
+      </Grid>
+    </Border>
+
+  </Grid>
+</Window>

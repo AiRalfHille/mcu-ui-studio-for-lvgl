@@ -1,0 +1,108 @@
+{% extends "main.html" %}
+
+{% block tabs %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+<div class="hero" markdown>
+  <div class="hero-content">
+    <h1>MCU UI Studio for LVGL</h1>
+    <p>
+      Visual editor and code generator for embedded LVGL projects.<br>
+      Design screens, configure events, and generate the full
+      C-side contract between your MCU application and the display layer.
+    </p>
+    <a href="{{ 'guide/getting-started/' | url }}" class="md-button md-button--primary">
+      Getting Started
+    </a>
+    <a href="{{ 'guide/concepts/' | url }}" class="md-button">
+      Concepts
+    </a>
+  </div>
+</div>
+
+<div class="features">
+  <div class="feature">
+    <h3>Structured Editor</h3>
+    <p>Toolbox, structure tree, and typed property editor.
+    Place widgets, edit properties directly,
+    and inspect the result in the simulator preview.</p>
+  </div>
+  <div class="feature">
+    <h3>Two Generation Modes</h3>
+    <p><strong>Standard</strong> for classic LVGL projects.<br>
+    <strong>RTOS-Messages</strong> for queue-based MCU architectures
+    with a typed contract.</p>
+  </div>
+  <div class="feature">
+    <h3>Real Simulator</h3>
+    <p>Preview in the native LVGL simulator through SDL2 —
+    using the configured display resolution,
+    not just an approximation.</p>
+  </div>
+</div>
+
+<style>
+.hero {
+  padding: 5rem 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, var(--md-primary-fg-color) 0%, var(--md-accent-fg-color) 100%);
+  border-radius: 8px;
+  margin: 2rem 0 3rem 0;
+  color: white;
+}
+
+.hero h1 {
+  color: white;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  max-width: 640px;
+  margin: 0 auto 2.5rem auto;
+  opacity: 0.92;
+  line-height: 1.7;
+}
+
+.hero .md-button {
+  margin: 0 0.5rem;
+  border-color: white;
+  color: white;
+}
+
+.hero .md-button--primary {
+  background-color: white;
+  color: var(--md-primary-fg-color);
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.feature {
+  padding: 1.8rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 8px;
+  background: var(--md-default-bg-color);
+}
+
+.feature h3 {
+  margin-top: 0;
+  color: var(--md-primary-fg-color);
+  font-size: 1.1rem;
+}
+
+.feature p {
+  margin-bottom: 0;
+  color: var(--md-default-fg-color--light);
+  line-height: 1.6;
+}
+</style>
+{% endblock %}

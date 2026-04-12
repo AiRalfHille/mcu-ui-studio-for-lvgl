@@ -1,0 +1,61 @@
+name: Issue
+description: Report a bug, regression, or unexpected behavior
+title: "[Issue]: "
+labels:
+  - issue
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please describe the problem as clearly as possible.
+  - type: input
+    id: area
+    attributes:
+      label: Area
+      description: Which part of the project is affected?
+      placeholder: Editor, Preview, Generator, Example project, UI, Build
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What is wrong?
+      placeholder: A short and clear problem description
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: How can the problem be reproduced?
+      placeholder: |
+        1. Open ...
+        2. Click ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: Platform
+      description: Optional platform information
+      placeholder: macOS, Windows, Linux, ESP32 target
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Optional supporting information
+

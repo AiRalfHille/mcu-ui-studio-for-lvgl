@@ -1,0 +1,22 @@
+{
+  "FormatVersion": 1,
+  "LvglVersion": "9.4",
+  "Mode": "LVGL",
+  "ProjectDirectory": "/Users/ralfhille/develop/net10/mcu_ui_studio_for_lvgl/examples/kachel",
+  "StrictValidation": true,
+  "ScreenWidth": 1280,
+  "ScreenHeight": 800,
+  "ScreenFiles": [
+    "screens/ui_start.json"
+  ],
+  "AssetDirectories": [
+    "assets"
+  ],
+  "FontDirectories": [
+    "fonts"
+  ],
+  "OutputDirectory": "/Users/ralfhille/develop/net10/mcu_ui_studio_for_lvgl/examples/kachel/build",
+  "LvConfFile": "/Users/ralfhille/develop/net10/mcu_ui_studio_for_lvgl/examples/kachel/build/lv_conf_project.h",
+  "ThemeFile": "/Users/ralfhille/develop/net10/mcu_ui_studio_for_lvgl/examples/targets/kachel/main/generated/theme_project.c",
+  "ProjectTemplate": "Standard"
+}

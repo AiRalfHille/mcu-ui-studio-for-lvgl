@@ -1,0 +1,82 @@
+site_name: MCU UI Studio for LVGL
+site_description: User Manual for MCU UI Studio for LVGL
+site_author: Ralf Hille
+docs_dir: docs-en
+site_dir: site/en
+
+theme:
+  name: material
+  custom_dir: docs-en/overrides
+  language: en
+  palette:
+    - scheme: default
+      primary: blue grey
+      accent: light blue
+      toggle:
+        icon: material/brightness-7
+        name: Dark mode
+    - scheme: slate
+      primary: blue grey
+      accent: light blue
+      toggle:
+        icon: material/brightness-4
+        name: Light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - content.code.copy
+    - content.code.annotate
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Introduction:
+    - Preface: about/preface.md
+    - About This Manual: about/about.md
+    - Project Status: about/project-status.md
+    - Manual Review: about/manual-review.md
+    - License: about/license.md
+    - Third-Party Components: about/third-party.md
+  - Getting Started:
+    - Getting Started: guide/getting-started.md
+  - Concepts:
+    - Concepts: guide/concepts.md
+  - User Interface:
+    - Overview: guide/ui-overview.md
+    - Toolbox: guide/ui-toolbox.md
+    - Structure: guide/ui-structure.md
+    - Properties: guide/ui-properties.md
+    - Diagnostics: guide/ui-diagnostics.md
+    - Status Bar: guide/ui-statusbar.md
+    - Toolbar: guide/ui-toolbar.md
+  - Project Templates:
+    - Standard: guide/template-standard.md
+    - RTOS-Messages: guide/template-rtos.md
+  - Widgets:
+    - Overview: guide/widgets.md
+  - Code Generation:
+    - Overview: guide/code-generation.md
+  - Examples:
+    - Overview: guide/example-overview.md
+    - Portal: guide/example-portal.md
+    - Kachel: guide/example-kachel.md
+    - Widgets: guide/example-widgets.md

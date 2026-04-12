@@ -1,0 +1,22 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        x:Class="Ai.McuUiStudio.App.Views.InfoDialog"
+        mc:Ignorable="d"
+        Width="520"
+        Height="220"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner"
+        Title="{Binding Title}">
+  <Grid RowDefinitions="*,Auto" Margin="16">
+    <TextBlock Text="{Binding Message}"
+               TextWrapping="Wrap"
+               VerticalAlignment="Center" />
+    <StackPanel Grid.Row="1"
+                Margin="0,16,0,0"
+                Orientation="Horizontal"
+                HorizontalAlignment="Right">
+      <Button Content="{Binding CloseLabel}" Click="CloseClick" />
+    </StackPanel>
+  </Grid>
+</Window>

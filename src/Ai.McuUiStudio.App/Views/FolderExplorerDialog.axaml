@@ -1,0 +1,102 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Ai.McuUiStudio.App.ViewModels"
+        x:Class="Ai.McuUiStudio.App.Views.FolderExplorerDialog"
+        mc:Ignorable="d"
+        Width="980"
+        Height="620"
+        MinWidth="760"
+        MinHeight="480"
+        WindowStartupLocation="CenterOwner"
+        Title="{Binding Title}">
+  <Grid RowDefinitions="Auto,Auto,*,Auto"
+        ColumnDefinitions="2*,8,3*"
+        Margin="16">
+    <TextBlock Grid.Row="0"
+               Grid.ColumnSpan="3"
+               Margin="0,0,0,12"
+               Text="{Binding CurrentDirectoryPath}"
+               FontWeight="SemiBold"
+               TextWrapping="Wrap" />
+
+    <Grid Grid.Row="1"
+          Grid.ColumnSpan="3"
+          Margin="0,0,0,12"
+          ColumnDefinitions="*,Auto"
+          ColumnSpacing="12">
+      <TextBlock Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="{Binding SelectedDirectoryStatusText}"
+                 Foreground="#A14F1A" />
+      <Button Grid.Column="1"
+              Content="{Binding NewFolderLabel}"
+              Click="NewFolderClick"
+              IsEnabled="{Binding CanCreateFolder}" />
+    </Grid>
+
+    <Border Grid.Row="2"
+            Grid.Column="0"
+            BorderBrush="#22000000"
+            BorderThickness="1">
+      <TreeView x:Name="DirectoryTreeView"
+                ItemsSource="{Binding RootNodes}"
+                SelectedItem="{Binding SelectedDirectory}">
+        <TreeView.Styles>
+          <Style Selector="TreeViewItem">
+            <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+          </Style>
+        </TreeView.Styles>
+        <TreeView.ItemTemplate>
+          <TreeDataTemplate ItemsSource="{Binding Children}">
+            <TextBlock Margin="6,4"
+                       Text="{Binding Name}" />
+          </TreeDataTemplate>
+        </TreeView.ItemTemplate>
+      </TreeView>
+    </Border>
+
+    <GridSplitter Grid.Row="2"
+                  Grid.Column="1"
+                  Width="8"
+                  Background="Transparent" />
+
+    <Border Grid.Row="2"
+            Grid.Column="2"
+            BorderBrush="#22000000"
+            BorderThickness="1">
+      <ListBox ItemsSource="{Binding FileEntries}">
+        <ListBox.ItemTemplate>
+          <DataTemplate x:DataType="vm:FileEntryViewModel">
+            <Grid Margin="8,6"
+                  ColumnDefinitions="*,Auto"
+                  ColumnSpacing="12">
+              <TextBlock Text="{Binding Name}" />
+              <TextBlock Grid.Column="1"
+                         Text="{Binding SizeText}"
+                         Opacity="0.65" />
+            </Grid>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </Border>
+
+    <Grid Grid.Row="3"
+          Grid.ColumnSpan="3"
+          Margin="0,12,0,0"
+          ColumnDefinitions="*,Auto,Auto"
+          ColumnSpacing="8">
+      <TextBlock Grid.Column="0"
+                 Foreground="#A85A20"
+                 Text="{Binding ErrorText}"
+                 TextWrapping="Wrap" />
+      <Button Grid.Column="1"
+              Content="{Binding SelectCurrentLabel}"
+              Click="SelectCurrentClick"
+              IsEnabled="{Binding CanSelectCurrentDirectory}" />
+      <Button Grid.Column="2"
+              Content="{Binding CancelLabel}"
+              Click="CancelClick" />
+    </Grid>
+  </Grid>
+</Window>

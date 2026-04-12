@@ -1,0 +1,35 @@
+name: Documentation
+description: Report unclear, missing, or incorrect documentation
+title: "[Docs]: "
+labels:
+  - documentation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for documentation problems or improvement requests.
+  - type: input
+    id: location
+    attributes:
+      label: Documentation area
+      description: Which file, page, or section is affected?
+      placeholder: README.md, usermanual, example README, generated docs
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: What is unclear or wrong?
+      description: Describe the documentation problem
+    validations:
+      required: true
+  - type: textarea
+    id: improvement
+    attributes:
+      label: Suggested improvement
+      description: How should this be improved?
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Optional screenshots, examples, or references
