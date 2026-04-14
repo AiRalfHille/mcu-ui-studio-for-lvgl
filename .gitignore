@@ -44,6 +44,7 @@ GitHub/site/
 
 # Internal local-only working docs
 GitHub/docs/
+GitHub/product-lifecycle/
 
 # Optional local caches
 .mkdocs_cache/

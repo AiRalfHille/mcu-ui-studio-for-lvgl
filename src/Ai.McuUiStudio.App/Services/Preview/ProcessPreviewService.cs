@@ -459,6 +459,9 @@ public sealed class ProcessPreviewService : IPreviewService
         {
             var repoCandidates = new[]
             {
+                Path.Combine(repoRoot, "native", "lvgl_simulator_host", "build-macos-runtime", "lvgl_simulator_host"),
+                Path.Combine(repoRoot, "native", "lvgl_simulator_host", "build-macos", "lvgl_simulator_host"),
+                Path.Combine(repoRoot, "native", "lvgl_simulator_host", "build-windows", "lvgl_simulator_host.exe"),
                 Path.Combine(repoRoot, "native", "lvgl_simulator_host", "build", "lvgl_simulator_host"),
                 Path.Combine(repoRoot, "native", "lvgl_simulator_host", "build", "Debug", "lvgl_simulator_host"),
                 Path.Combine(repoRoot, "native", "lvgl_simulator_host", "build", "Release", "lvgl_simulator_host"),
