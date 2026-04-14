@@ -304,10 +304,11 @@ Empfohlener Release-Zusammenbau:
 
 Aktuell bekannte Desktop-Hinweise:
 
-- fuer Datei- und Ordnerauswahl verwendet das Projekt derzeit eigene Dialoge
-  statt nativer Plattformdialoge
-  - Hintergrund: der native Dialogpfad war unter macOS fuer den aktuellen
-    Projektalltag nicht stabil genug
+- unter macOS werden Datei- und Ordnerdialoge wieder ueber native
+  Plattformdialoge geoeffnet
+  - dieser Stand wurde lokal nach dem Update der Avalonia-Desktop-Pakete auf
+    `12.0.1` erneut verifiziert
+  - `Avalonia.Controls.WebView` bleibt aktuell noch auf `12.0.0`
 - beim Build erscheint derzeit eine transitive Sicherheitswarnung zu
   `Tmds.DBus.Protocol 0.90.3`
   - Advisory: `GHSA-xrw6-gwf8-vvr9`

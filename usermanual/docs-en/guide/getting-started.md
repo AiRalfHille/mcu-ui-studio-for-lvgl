@@ -31,9 +31,11 @@ structure there. This especially includes:
 If the directory already contains a project file, the editor continues working
 with that project.
 
-The file and folder selection is intentionally handled through internal
-application dialogs rather than native platform dialogs. This gives more
-consistent behavior and proved more robust especially on macOS.
+File and folder selection uses the native platform dialogs again. This was
+revalidated locally on macOS after updating the Avalonia desktop packages to
+`12.0.1`.
+
+`Avalonia.Controls.WebView` currently still remains on `12.0.0`.
 
 !!! tip "Tip"
     For the first run, an empty project directory or a very small example

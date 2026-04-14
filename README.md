@@ -297,10 +297,10 @@ Recommended release assembly:
 
 Current desktop notes:
 
-- the project currently uses custom file and folder dialogs instead of native
-  platform dialogs
-  - reason: the native dialog path was not reliable enough on macOS for the
-    current project workflow
+- native file and folder dialogs are used again on macOS
+  - this was revalidated locally after updating the Avalonia desktop packages
+    to `12.0.1`
+  - `Avalonia.Controls.WebView` currently remains on `12.0.0`
 - the build currently reports a transitive security warning for
   `Tmds.DBus.Protocol 0.90.3`
   - advisory: `GHSA-xrw6-gwf8-vvr9`

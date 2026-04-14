@@ -309,7 +309,7 @@ public partial class MainWindow : Window
 
     private async void NewProjectClick(object? sender, RoutedEventArgs e)
     {
-        if (DataContext is not MainWindowViewModel vm)
+        if (DataContext is not MainWindowViewModel vm || StorageProvider is null)
         {
             return;
         }
@@ -322,16 +322,7 @@ public partial class MainWindow : Window
 
         Directory.CreateDirectory(screensDirectory);
 
-        var dialog = new ScreenFileDialog(createMode: true)
-        {
-            DataContext = new ScreenFileDialogViewModel(
-                vm.GetLocalizationCatalog(),
-                vm.NewScreenDialogTitle,
-                screensDirectory,
-                createMode: true)
-        };
-
-        var targetPath = await dialog.ShowDialog<string?>(this);
+        var targetPath = await PickNewScreenPathAsync(vm, screensDirectory);
         if (string.IsNullOrWhiteSpace(targetPath))
         {
             return;
@@ -562,7 +553,7 @@ public partial class MainWindow : Window
 
     private async void OpenDocumentClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        if (DataContext is not MainWindowViewModel vm)
+        if (DataContext is not MainWindowViewModel vm || StorageProvider is null)
         {
             return;
         }
@@ -573,16 +564,7 @@ public partial class MainWindow : Window
             return;
         }
 
-        var dialog = new ScreenFileDialog(createMode: false)
-        {
-            DataContext = new ScreenFileDialogViewModel(
-                vm.GetLocalizationCatalog(),
-                vm.OpenDialogTitle,
-                screensDirectory,
-                createMode: false)
-        };
-
-        var selectedPath = await dialog.ShowDialog<string?>(this);
+        var selectedPath = await PickExistingScreenPathAsync(vm, screensDirectory);
         if (string.IsNullOrWhiteSpace(selectedPath))
         {
             return;
@@ -651,6 +633,57 @@ public partial class MainWindow : Window
         await writer.FlushAsync();
 
         vm.MarkDocumentSaved(targetPath);
+    }
+
+    private async Task<string?> PickNewScreenPathAsync(MainWindowViewModel vm, string screensDirectory)
+    {
+        if (StorageProvider is null)
+        {
+            return null;
+        }
+
+        var startLocation = await StorageProvider.TryGetFolderFromPathAsync(screensDirectory);
+        var targetFile = await StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
+        {
+            Title = vm.NewScreenDialogTitle,
+            SuggestedStartLocation = startLocation,
+            SuggestedFileName = "ui_start",
+            DefaultExtension = "json",
+            FileTypeChoices =
+            [
+                new FilePickerFileType(vm.ScreenJsonFileTypeLabel)
+                {
+                    Patterns = ["*.json"]
+                }
+            ]
+        });
+
+        return targetFile?.TryGetLocalPath();
+    }
+
+    private async Task<string?> PickExistingScreenPathAsync(MainWindowViewModel vm, string screensDirectory)
+    {
+        if (StorageProvider is null)
+        {
+            return null;
+        }
+
+        var startLocation = await StorageProvider.TryGetFolderFromPathAsync(screensDirectory);
+        var files = await StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
+        {
+            Title = vm.OpenDialogTitle,
+            AllowMultiple = false,
+            SuggestedStartLocation = startLocation,
+            FileTypeFilter =
+            [
+                new FilePickerFileType(vm.ScreenJsonFileTypeLabel)
+                {
+                    Patterns = ["*.json"]
+                }
+            ]
+        });
+
+        return files.Count > 0 ? files[0].TryGetLocalPath() : null;
     }
 
     private void ToggleToolboxGroupClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
