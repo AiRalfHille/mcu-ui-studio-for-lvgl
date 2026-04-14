@@ -1,5 +1,6 @@
 using System.IO;
 using Avalonia.Controls;
+using Avalonia.Platform.Storage;
 using Ai.McuUiStudio.App.Services.Project;
 using Ai.McuUiStudio.App.ViewModels;
 
@@ -204,21 +205,23 @@ public partial class ProjectDialog : Window
 
     private async Task<string?> PickFolderPathAsync(string? title = null, string? suggestedPath = null)
     {
-        var vm = DataContext as ProjectDialogViewModel;
-        if (vm is null)
+        if (StorageProvider is null)
         {
             return null;
         }
 
-        var dialog = new FolderExplorerDialog
-        {
-            DataContext = new FolderExplorerDialogViewModel(
-                vm.GetLocalizationCatalog(),
-                title ?? vm.OpenProjectDirectoryDialogTitle,
-                suggestedPath)
-        };
+        var startLocation = !string.IsNullOrWhiteSpace(suggestedPath)
+            ? await StorageProvider.TryGetFolderFromPathAsync(suggestedPath)
+            : null;
 
-        return await dialog.ShowDialog<string?>(this);
+        var folders = await StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions
+        {
+            Title = title,
+            AllowMultiple = false,
+            SuggestedStartLocation = startLocation
+        });
+
+        return folders.Count > 0 ? folders[0].Path.LocalPath : null;
     }
 
     private static bool IsEffectivelyEmptyDirectory(string path)

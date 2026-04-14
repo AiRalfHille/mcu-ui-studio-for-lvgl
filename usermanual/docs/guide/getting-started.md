@@ -33,9 +33,11 @@ Projektstruktur an. Dazu gehören insbesondere:
 Wird ein Ordner mit einer bestehenden Projektdatei verwendet, arbeitet der
 Editor mit diesem Projekt weiter.
 
-*Die Datei- und Ordnerauswahl erfolgt bewusst ueber anwendungsinterne Dialoge
-und nicht ueber native Plattformdialoge. Das sorgt fuer ein einheitlicheres
-Verhalten und war insbesondere unter macOS robuster als der native Dialogpfad.*
+*Die Datei- und Ordnerauswahl nutzt wieder native Plattformdialoge. Dieser
+Stand wurde unter macOS lokal nach dem Update der Avalonia-Desktop-Pakete auf
+`12.0.1` erneut verifiziert.*
+
+*`Avalonia.Controls.WebView` bleibt aktuell noch auf `12.0.0`.*
 
 !!! tip "Tipp"
     Für den ersten Durchlauf ist ein leerer Projektordner oder ein sehr
